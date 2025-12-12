@@ -1,0 +1,60 @@
+{
+  "name": "MathMaster LC",
+  "full_name": "Irish Leaving Cert Mathematics",
+  "emoji": "\ud83d\udcd0",
+  "colors": {
+    "primary": "#3b82f6",
+    "secondary": "#2563eb",
+    "accent": "#60a5fa"
+  },
+  "topics": [
+    {
+      "id": "algebra",
+      "icon": "\ud83d\udcca",
+      "title": "Algebra",
+      "desc": "Equations, inequalities, functions, sequences"
+    },
+    {
+      "id": "geometry",
+      "icon": "\ud83d\udcd0",
+      "title": "Geometry",
+      "desc": "Theorems, coordinate geometry, transformations"
+    },
+    {
+      "id": "trig",
+      "icon": "\ud83d\udccf",
+      "title": "Trigonometry",
+      "desc": "Trig functions, identities, equations, applications"
+    },
+    {
+      "id": "calculus",
+      "icon": "\u222b",
+      "title": "Calculus",
+      "desc": "Differentiation, integration, applications, rates of change"
+    },
+    {
+      "id": "probability",
+      "icon": "\ud83c\udfb2",
+      "title": "Probability",
+      "desc": "Basic probability, combinations, permutations"
+    },
+    {
+      "id": "statistics",
+      "icon": "\ud83d\udcc8",
+      "title": "Statistics",
+      "desc": "Data analysis, mean, median, standard deviation"
+    },
+    {
+      "id": "complex",
+      "icon": "\ud83d\udd22",
+      "title": "Complex Numbers",
+      "desc": "Imaginary numbers, operations, Argand diagrams"
+    },
+    {
+      "id": "vectors",
+      "icon": "\u27a1\ufe0f",
+      "title": "Vectors",
+      "desc": "Vector operations, dot product, applications"
+    }
+  ]
+}

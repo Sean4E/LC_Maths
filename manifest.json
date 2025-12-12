@@ -1,0 +1,31 @@
+{
+  "name": "MathMaster LC - Irish Leaving Cert Mathematics",
+  "short_name": "MathMaster LC",
+  "description": "Interactive study app for Irish Leaving Cert Mathematics with flashcards, quizzes, and more.",
+  "start_url": "/LC_MATHS/",
+  "scope": "/LC_MATHS/",
+  "display": "standalone",
+  "background_color": "#3b82f6",
+  "theme_color": "#3b82f6",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "lang": "en",
+  "dir": "ltr"
+}
