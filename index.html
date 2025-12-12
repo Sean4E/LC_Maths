@@ -529,6 +529,42 @@
             font-size: 0.9rem;
         }
         .back-btn:hover { color: var(--accent-cyan); }
+        .topic-nav-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .topic-nav-header .back-btn { margin-bottom: 0; }
+        .lesson-progress-bar {
+            flex: 1;
+            min-width: 150px;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .lesson-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .lesson-counter {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        .lesson-nav .btn { min-width: 120px; }
         .topic-content {
             background: var(--glass);
             border: 1px solid var(--glass-border);
@@ -733,8 +769,18 @@
                 </div>
                 <div class="card-grid" id="topicsGrid"></div>
                 <div class="topic-view" id="topicView">
-                    <a class="back-btn" id="backToTopics">← Back to Topics</a>
+                    <div class="topic-nav-header">
+                        <a class="back-btn" id="backToTopics">← Back to Topics</a>
+                        <div class="lesson-progress-bar">
+                            <div class="lesson-progress-fill" id="lessonProgressFill"></div>
+                        </div>
+                        <span class="lesson-counter" id="lessonCounter">Lesson 1 of 8</span>
+                    </div>
                     <div class="topic-content" id="topicContent"></div>
+                    <div class="lesson-nav">
+                        <button class="btn btn-secondary" id="prevLesson" disabled>← Previous</button>
+                        <button class="btn btn-primary" id="nextLesson">Next →</button>
+                    </div>
                 </div>
             </section>
 
@@ -1522,25 +1568,93 @@
                 </div>
             `).join('');
             document.querySelectorAll('.topic-card').forEach(card => { card.addEventListener('click', () => showTopicContent(card.dataset.topic)); });
-            document.getElementById('backToTopics').addEventListener('click', () => { document.getElementById('topicView').classList.remove('active'); document.getElementById('topicsGrid').style.display = 'grid'; });
+            document.getElementById('backToTopics').addEventListener('click', () => {
+                document.getElementById('topicView').classList.remove('active');
+                document.getElementById('topicsGrid').style.display = 'grid';
+                currentTopicLessons = [];
+                currentLessonIndex = 0;
+            });
+            document.getElementById('prevLesson').addEventListener('click', () => navigateLesson(-1));
+            document.getElementById('nextLesson').addEventListener('click', () => navigateLesson(1));
         }
+
+        let currentTopicLessons = [];
+        let currentLessonIndex = 0;
+        let currentTopicId = null;
 
         function showTopicContent(topicId) {
             const topic = topics.find(t => t.id === topicId);
             if (!topic) return;
-            document.getElementById('topicsGrid').style.display = 'none';
-            document.getElementById('topicContent').innerHTML = topic.content;
-            document.getElementById('topicView').classList.add('active');
-            
-            // Update progress - viewing a topic gives at least 25% progress
-            const currentProgress = topic.progress || 0;
-            if (currentProgress < 25) {
-                saveProgress(topicId, 25);
+            currentTopicId = topicId;
+            const content = topic.content;
+            const titleMatch = content.match(/<h2>([^<]+)<\/h2>/);
+            const topicTitle = titleMatch ? titleMatch[1] : topic.title;
+            const h3Regex = /<h3>([^<]+)<\/h3>/g;
+            const parts = content.split(h3Regex);
+            currentTopicLessons = [];
+            let intro = parts[0];
+            if (intro && intro.trim()) {
+                currentTopicLessons.push({ title: topicTitle + ' - Introduction', content: intro });
             }
+            for (let i = 1; i < parts.length; i += 2) {
+                const lessonTitle = parts[i];
+                const lessonContent = parts[i + 1] || '';
+                currentTopicLessons.push({ title: lessonTitle, content: `<h3>${lessonTitle}</h3>${lessonContent}` });
+            }
+            if (currentTopicLessons.length === 0) {
+                currentTopicLessons.push({ title: topicTitle, content: content });
+            }
+            currentLessonIndex = 0;
+            document.getElementById('topicsGrid').style.display = 'none';
+            document.getElementById('topicView').classList.add('active');
+            showCurrentLesson();
             addXP(10);
-            
-            // Refresh the topics grid to show updated progress
-            initTopics();
+        }
+
+        function showCurrentLesson() {
+            const lesson = currentTopicLessons[currentLessonIndex];
+            const total = currentTopicLessons.length;
+            const topic = topics.find(t => t.id === currentTopicId);
+            document.getElementById('topicContent').innerHTML = lesson.content;
+            const progress = ((currentLessonIndex + 1) / total) * 100;
+            document.getElementById('lessonProgressFill').style.width = progress + '%';
+            document.getElementById('lessonCounter').textContent = `Lesson ${currentLessonIndex + 1} of ${total}`;
+            document.getElementById('prevLesson').disabled = currentLessonIndex === 0;
+            const nextBtn = document.getElementById('nextLesson');
+            if (currentLessonIndex === total - 1) {
+                nextBtn.textContent = '✓ Complete Topic';
+                nextBtn.style.background = 'var(--accent-green)';
+                nextBtn.style.color = 'white';
+            } else {
+                nextBtn.textContent = 'Next →';
+                nextBtn.style.background = '';
+                nextBtn.style.color = '';
+            }
+            if (topic) {
+                const progressPercent = Math.round(((currentLessonIndex + 1) / total) * 100);
+                if (progressPercent > (topic.progress || 0)) {
+                    saveProgress(currentTopicId, progressPercent);
+                    initTopics();
+                }
+            }
+        }
+
+        function navigateLesson(direction) {
+            const newIndex = currentLessonIndex + direction;
+            const total = currentTopicLessons.length;
+            if (newIndex >= 0 && newIndex < total) {
+                currentLessonIndex = newIndex;
+                showCurrentLesson();
+                addXP(5);
+                document.getElementById('topicContent').scrollIntoView({ behavior: 'smooth' });
+            } else if (newIndex >= total) {
+                showNotification('🎉 Topic Complete! +50 XP');
+                addXP(50);
+                document.getElementById('topicView').classList.remove('active');
+                document.getElementById('topicsGrid').style.display = 'grid';
+                currentTopicLessons = [];
+                currentLessonIndex = 0;
+            }
         }
 
         // ==================== FLASHCARDS ====================
@@ -2144,10 +2258,17 @@
         
         function updateStats() { document.getElementById('streakCount').textContent = streak; document.getElementById('xpCount').textContent = xp; }
         function addXP(amount) { xp += amount; localStorage.setItem('xp', xp); updateStats(); }
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.style.cssText = 'position:fixed;top:80px;right:20px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-green));color:white;padding:1rem 1.5rem;border-radius:12px;z-index:1001;animation:fadeIn 0.3s ease;font-weight:500;box-shadow:0 4px 20px rgba(0,212,255,0.3);';
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 3000);
+        }
 
         // ==================== EXAM COUNTDOWN ====================
         function initExamCountdown() {
-            // LC Chemistry typically in June
+            // LC Maths typically in June
             const examDate = new Date('2025-06-11'); // Approximate LC date
             const today = new Date();
             const diffTime = examDate - today;
