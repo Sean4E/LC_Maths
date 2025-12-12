@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#0a0e14">
-    <meta name="description" content="MathMaster LC - Interactive Mathematics Chemistry study app with flashcards, quizzes, periodic table, and more.">
+    <meta name="description" content="MathMaster LC - Interactive Irish Leaving Certificate Mathematics study app with flashcards, quizzes, calculators, and formulas.">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="MathMaster LC">
@@ -1159,188 +1159,203 @@
 
     <script>
         // ==================== DATA ====================
-        const elements = [
-            { number: 1, symbol: 'H', name: 'Hydrogen', mass: 1.008, category: 'nonmetal', group: 1, period: 1, electronConfig: '1s¹', electronegativity: 2.20 },
-            { number: 2, symbol: 'He', name: 'Helium', mass: 4.003, category: 'noble', group: 18, period: 1, electronConfig: '1s²' },
-            { number: 3, symbol: 'Li', name: 'Lithium', mass: 6.941, category: 'alkali', group: 1, period: 2, electronConfig: '[He] 2s¹', electronegativity: 0.98 },
-            { number: 4, symbol: 'Be', name: 'Beryllium', mass: 9.012, category: 'alkaline', group: 2, period: 2, electronConfig: '[He] 2s²', electronegativity: 1.57 },
-            { number: 5, symbol: 'B', name: 'Boron', mass: 10.81, category: 'metalloid', group: 13, period: 2 },
-            { number: 6, symbol: 'C', name: 'Carbon', mass: 12.01, category: 'nonmetal', group: 14, period: 2, electronConfig: '[He] 2s² 2p²', electronegativity: 2.55 },
-            { number: 7, symbol: 'N', name: 'Nitrogen', mass: 14.01, category: 'nonmetal', group: 15, period: 2, electronConfig: '[He] 2s² 2p³', electronegativity: 3.04 },
-            { number: 8, symbol: 'O', name: 'Oxygen', mass: 16.00, category: 'nonmetal', group: 16, period: 2, electronConfig: '[He] 2s² 2p⁴', electronegativity: 3.44 },
-            { number: 9, symbol: 'F', name: 'Fluorine', mass: 19.00, category: 'halogen', group: 17, period: 2, electronConfig: '[He] 2s² 2p⁵', electronegativity: 3.98 },
-            { number: 10, symbol: 'Ne', name: 'Neon', mass: 20.18, category: 'noble', group: 18, period: 2 },
-            { number: 11, symbol: 'Na', name: 'Sodium', mass: 22.99, category: 'alkali', group: 1, period: 3, electronConfig: '[Ne] 3s¹', electronegativity: 0.93 },
-            { number: 12, symbol: 'Mg', name: 'Magnesium', mass: 24.31, category: 'alkaline', group: 2, period: 3, electronConfig: '[Ne] 3s²', electronegativity: 1.31 },
-            { number: 13, symbol: 'Al', name: 'Aluminium', mass: 26.98, category: 'post-transition', group: 13, period: 3 },
-            { number: 14, symbol: 'Si', name: 'Silicon', mass: 28.09, category: 'metalloid', group: 14, period: 3 },
-            { number: 15, symbol: 'P', name: 'Phosphorus', mass: 30.97, category: 'nonmetal', group: 15, period: 3 },
-            { number: 16, symbol: 'S', name: 'Sulfur', mass: 32.07, category: 'nonmetal', group: 16, period: 3, electronConfig: '[Ne] 3s² 3p⁴', electronegativity: 2.58 },
-            { number: 17, symbol: 'Cl', name: 'Chlorine', mass: 35.45, category: 'halogen', group: 17, period: 3, electronConfig: '[Ne] 3s² 3p⁵', electronegativity: 3.16 },
-            { number: 18, symbol: 'Ar', name: 'Argon', mass: 39.95, category: 'noble', group: 18, period: 3 },
-            { number: 19, symbol: 'K', name: 'Potassium', mass: 39.10, category: 'alkali', group: 1, period: 4, electronConfig: '[Ar] 4s¹', electronegativity: 0.82 },
-            { number: 20, symbol: 'Ca', name: 'Calcium', mass: 40.08, category: 'alkaline', group: 2, period: 4, electronConfig: '[Ar] 4s²', electronegativity: 1.00 },
-            { number: 21, symbol: 'Sc', name: 'Scandium', mass: 44.96, category: 'transition', group: 3, period: 4 },
-            { number: 22, symbol: 'Ti', name: 'Titanium', mass: 47.87, category: 'transition', group: 4, period: 4 },
-            { number: 23, symbol: 'V', name: 'Vanadium', mass: 50.94, category: 'transition', group: 5, period: 4 },
-            { number: 24, symbol: 'Cr', name: 'Chromium', mass: 52.00, category: 'transition', group: 6, period: 4 },
-            { number: 25, symbol: 'Mn', name: 'Manganese', mass: 54.94, category: 'transition', group: 7, period: 4 },
-            { number: 26, symbol: 'Fe', name: 'Iron', mass: 55.85, category: 'transition', group: 8, period: 4, electronConfig: '[Ar] 3d⁶ 4s²', electronegativity: 1.83 },
-            { number: 27, symbol: 'Co', name: 'Cobalt', mass: 58.93, category: 'transition', group: 9, period: 4 },
-            { number: 28, symbol: 'Ni', name: 'Nickel', mass: 58.69, category: 'transition', group: 10, period: 4 },
-            { number: 29, symbol: 'Cu', name: 'Copper', mass: 63.55, category: 'transition', group: 11, period: 4, electronConfig: '[Ar] 3d¹⁰ 4s¹', electronegativity: 1.90 },
-            { number: 30, symbol: 'Zn', name: 'Zinc', mass: 65.38, category: 'transition', group: 12, period: 4, electronConfig: '[Ar] 3d¹⁰ 4s²', electronegativity: 1.65 },
-            { number: 31, symbol: 'Ga', name: 'Gallium', mass: 69.72, category: 'post-transition', group: 13, period: 4 },
-            { number: 32, symbol: 'Ge', name: 'Germanium', mass: 72.63, category: 'metalloid', group: 14, period: 4 },
-            { number: 33, symbol: 'As', name: 'Arsenic', mass: 74.92, category: 'metalloid', group: 15, period: 4 },
-            { number: 34, symbol: 'Se', name: 'Selenium', mass: 78.97, category: 'nonmetal', group: 16, period: 4 },
-            { number: 35, symbol: 'Br', name: 'Bromine', mass: 79.90, category: 'halogen', group: 17, period: 4, electronConfig: '[Ar] 3d¹⁰ 4s² 4p⁵', electronegativity: 2.96 },
-            { number: 36, symbol: 'Kr', name: 'Krypton', mass: 83.80, category: 'noble', group: 18, period: 4 }
-        ];
-
-        const atomicMasses = {
-            'H': 1.008, 'He': 4.003, 'Li': 6.941, 'Be': 9.012, 'B': 10.81, 'C': 12.01,
-            'N': 14.01, 'O': 16.00, 'F': 19.00, 'Ne': 20.18, 'Na': 22.99, 'Mg': 24.31,
-            'Al': 26.98, 'Si': 28.09, 'P': 30.97, 'S': 32.07, 'Cl': 35.45, 'Ar': 39.95,
-            'K': 39.10, 'Ca': 40.08, 'Fe': 55.85, 'Cu': 63.55, 'Zn': 65.38, 'Br': 79.90,
-            'Ag': 107.9, 'I': 126.9, 'Ba': 137.3, 'Au': 197.0, 'Pb': 207.2
-        };
+        // Mathematics-specific data - no periodic table needed
+        const elements = []; // Not used in Maths
+        const atomicMasses = {}; // Not used in Maths
 
         const topics = [
-            { id: 'atomic', icon: '⚛️', title: 'Atomic Structure', desc: 'Atoms, subatomic particles, electron configuration, isotopes', lessons: 8, questions: 45, progress: 0, content: '<h2>Atomic Structure</h2><h3>The Atom</h3><p>An atom is the smallest particle of an element that retains the chemical properties of that element. Atoms consist of three types of subatomic particles:</p><ul><li><strong>Protons</strong> - positively charged particles found in the nucleus</li><li><strong>Neutrons</strong> - neutral particles found in the nucleus</li><li><strong>Electrons</strong> - negatively charged particles orbiting the nucleus</li></ul><div class="key-point"><div class="key-point-title">Key Definition</div><p><strong>Atomic Number (Z)</strong> = Number of protons<br><strong>Mass Number (A)</strong> = Protons + Neutrons</p></div><h3>Isotopes</h3><p>Isotopes are atoms of the same element with the same number of protons but different numbers of neutrons.</p><h3>Electron Configuration</h3><p>Electrons are arranged in energy levels (shells) around the nucleus. The maximum number of electrons in each shell is given by 2n².</p>' },
-            { id: 'bonding', icon: '🔗', title: 'Chemical Bonding', desc: 'Ionic, covalent, metallic bonding, electronegativity, shapes', lessons: 10, questions: 52, progress: 0, content: '<h2>Chemical Bonding</h2><h3>Ionic Bonding</h3><p>Ionic bonds form between metals and non-metals through the transfer of electrons.</p><div class="key-point"><div class="key-point-title">Properties of Ionic Compounds</div><ul><li>High melting and boiling points</li><li>Conduct electricity when molten or dissolved</li><li>Form crystalline lattice structures</li></ul></div><h3>Covalent Bonding</h3><p>Covalent bonds form between non-metals through the sharing of electron pairs.</p><h3>Electronegativity</h3><p>Electronegativity is the ability of an atom to attract shared electrons towards itself in a covalent bond.</p>' },
-            { id: 'stoichiometry', icon: '⚖️', title: 'Stoichiometry & The Mole', desc: 'Mole concept, calculations, limiting reagents, yields', lessons: 12, questions: 68, progress: 0, content: '<h2>Stoichiometry & The Mole</h2><h3>The Mole Concept</h3><p>The mole is the SI unit for amount of substance. One mole contains exactly 6.022 × 10²³ particles (Avogadro\'s number).</p><div class="key-point"><div class="key-point-title">Key Formulae</div><p>Number of moles (n) = mass (m) / molar mass (M)<br>Number of moles (n) = number of particles / 6.022 × 10²³<br>Number of moles (n) = volume (L) / 22.4 (at STP for gases)</p></div>' },
-            { id: 'organic', icon: '🧬', title: 'Organic Chemistry', desc: 'Hydrocarbons, functional groups, reactions, polymers', lessons: 15, questions: 85, progress: 0, content: '<h2>Organic Chemistry</h2><h3>Hydrocarbons</h3><div class="key-point"><div class="key-point-title">Homologous Series</div><ul><li><strong>Alkanes</strong> (CₙH₂ₙ₊₂): Single bonds only</li><li><strong>Alkenes</strong> (CₙH₂ₙ): Contains C=C double bond</li><li><strong>Alkynes</strong> (CₙH₂ₙ₋₂): Contains C≡C triple bond</li></ul></div><h3>Functional Groups</h3><ul><li><strong>Alcohols (-OH)</strong></li><li><strong>Aldehydes (-CHO)</strong></li><li><strong>Ketones (C=O)</strong></li><li><strong>Carboxylic acids (-COOH)</strong></li><li><strong>Esters (-COO-)</strong></li></ul>' },
-            { id: 'acids', icon: '🧫', title: 'Acids & Bases', desc: 'pH, neutralisation, titrations, buffer solutions', lessons: 9, questions: 55, progress: 0, content: '<h2>Acids & Bases</h2><div class="key-point"><div class="key-point-title">Brønsted-Lowry Definition</div><p><strong>Acid:</strong> Proton (H⁺) donor<br><strong>Base:</strong> Proton (H⁺) acceptor</p></div><h3>The pH Scale</h3><p>pH = -log₁₀[H⁺]</p><ul><li>pH < 7: Acidic</li><li>pH = 7: Neutral</li><li>pH > 7: Basic/alkaline</li></ul><h3>Neutralisation</h3><p>Acid + Base → Salt + Water</p>' },
-            { id: 'redox', icon: '🔋', title: 'Electrochemistry', desc: 'Oxidation, reduction, electrochemical cells, electrolysis', lessons: 11, questions: 48, progress: 0, content: '<h2>Electrochemistry</h2><div class="key-point"><div class="key-point-title">Remember: OIL RIG</div><p><strong>O</strong>xidation <strong>I</strong>s <strong>L</strong>oss (of electrons)<br><strong>R</strong>eduction <strong>I</strong>s <strong>G</strong>ain (of electrons)</p></div><h3>Electrolysis</h3><p>Electrolysis uses electrical energy to drive a non-spontaneous reaction.</p><ul><li>Oxidation occurs at the anode (positive)</li><li>Reduction occurs at the cathode (negative)</li></ul>' },
-            { id: 'rates', icon: '⏱️', title: 'Rates & Equilibrium', desc: 'Reaction rates, factors affecting rate, Le Chatelier', lessons: 10, questions: 42, progress: 0, content: '<h2>Rates of Reaction & Equilibrium</h2><h3>Factors Affecting Rate</h3><ol><li><strong>Temperature:</strong> Higher = faster</li><li><strong>Concentration:</strong> Higher = faster</li><li><strong>Surface area:</strong> Greater = faster</li><li><strong>Catalyst:</strong> Provides alternative pathway</li><li><strong>Pressure:</strong> (for gases) Higher = faster</li></ol><div class="key-point"><div class="key-point-title">Le Chatelier\'s Principle</div><p>When a system at equilibrium is disturbed, it will shift to counteract the change.</p></div>' },
-            { id: 'gases', icon: '💨', title: 'Gases', desc: 'Gas laws, ideal gas equation, kinetic theory', lessons: 7, questions: 38, progress: 0, content: '<h2>Gases</h2><div class="key-point"><div class="key-point-title">Ideal Gas Equation</div><p><strong>PV = nRT</strong></p><ul><li>P = Pressure</li><li>V = Volume</li><li>n = Moles</li><li>R = Gas constant (8.314 J/mol·K)</li><li>T = Temperature (Kelvin)</li></ul></div><p>At STP (0°C, 1 atm), one mole of any ideal gas occupies 22.4 L</p>' },
-            { id: 'thermo', icon: '🔥', title: 'Thermochemistry', desc: 'Enthalpy, Hess\'s law, bond energies, calorimetry', lessons: 8, questions: 40, progress: 0, content: '<h2>Thermochemistry</h2><div class="key-point"><div class="key-point-title">Exothermic vs Endothermic</div><p><strong>Exothermic (ΔH < 0):</strong> Heat released<br><strong>Endothermic (ΔH > 0):</strong> Heat absorbed</p></div><h3>Heat Energy</h3><p><strong>q = mcΔT</strong></p><ul><li>q = heat energy (J)</li><li>m = mass (g)</li><li>c = specific heat capacity</li><li>ΔT = temperature change</li></ul>' },
-            { id: 'environmental', icon: '🌍', title: 'Environmental Chemistry', desc: 'Water treatment, atmosphere, pollution, green chemistry', lessons: 6, questions: 32, progress: 0, content: '<h2>Environmental Chemistry</h2><h3>Water Treatment</h3><ol><li>Screening</li><li>Settling/Sedimentation</li><li>Filtration</li><li>Chlorination</li><li>Fluoridation</li><li>pH adjustment</li></ol><h3>Pollution</h3><ul><li><strong>Acid rain:</strong> Caused by SO₂ and NOₓ</li><li><strong>Greenhouse effect:</strong> CO₂, CH₄, N₂O</li><li><strong>Ozone depletion:</strong> CFCs</li></ul>' }
+            { id: 'algebra', icon: '📊', title: 'Algebra', desc: 'Equations, inequalities, functions, indices, logarithms', lessons: 15, questions: 65, progress: 0, content: '<h2>Algebra</h2><h3>Solving Equations</h3><ul><li>Linear equations: ax + b = c</li><li>Quadratic equations: ax² + bx + c = 0</li><li>Simultaneous equations</li></ul><div class="key-point"><div class="key-point-title">Quadratic Formula</div><p><strong>x = (-b ± √(b²-4ac)) / 2a</strong></p></div><h3>Indices Laws</h3><ul><li>aᵐ × aⁿ = aᵐ⁺ⁿ</li><li>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</li><li>(aᵐ)ⁿ = aᵐⁿ</li><li>a⁰ = 1</li><li>a⁻ⁿ = 1/aⁿ</li></ul><h3>Logarithms</h3><p>If aˣ = b, then logₐb = x</p>' },
+            { id: 'geometry', icon: '📐', title: 'Geometry & Theorems', desc: 'Coordinate geometry, theorems, constructions, proofs', lessons: 18, questions: 72, progress: 0, content: '<h2>Geometry</h2><h3>Coordinate Geometry</h3><div class="key-point"><div class="key-point-title">Key Formulae</div><ul><li><strong>Distance:</strong> d = √[(x₂-x₁)² + (y₂-y₁)²]</li><li><strong>Midpoint:</strong> ((x₁+x₂)/2, (y₁+y₂)/2)</li><li><strong>Slope:</strong> m = (y₂-y₁)/(x₂-x₁)</li></ul></div><h3>Equation of a Line</h3><ul><li>y - y₁ = m(x - x₁)</li><li>y = mx + c</li><li>ax + by + c = 0</li></ul><h3>Circle</h3><p>(x - h)² + (y - k)² = r² (centre (h,k), radius r)</p>' },
+            { id: 'trig', icon: '📏', title: 'Trigonometry', desc: 'Trig ratios, identities, equations, sine/cosine rules', lessons: 14, questions: 58, progress: 0, content: '<h2>Trigonometry</h2><h3>Basic Ratios (SOH CAH TOA)</h3><ul><li>sin θ = Opposite / Hypotenuse</li><li>cos θ = Adjacent / Hypotenuse</li><li>tan θ = Opposite / Adjacent</li></ul><div class="key-point"><div class="key-point-title">Sine & Cosine Rules</div><p><strong>Sine Rule:</strong> a/sin A = b/sin B = c/sin C<br><strong>Cosine Rule:</strong> a² = b² + c² - 2bc cos A</p></div><h3>Key Identities</h3><ul><li>sin²θ + cos²θ = 1</li><li>tan θ = sin θ / cos θ</li></ul>' },
+            { id: 'calculus', icon: '∫', title: 'Calculus', desc: 'Differentiation, integration, applications, rates of change', lessons: 20, questions: 85, progress: 0, content: '<h2>Calculus</h2><h3>Differentiation</h3><p>The derivative measures rate of change.</p><div class="key-point"><div class="key-point-title">Basic Rules</div><ul><li>d/dx (xⁿ) = nxⁿ⁻¹</li><li>d/dx (sin x) = cos x</li><li>d/dx (cos x) = -sin x</li><li>d/dx (eˣ) = eˣ</li><li>d/dx (ln x) = 1/x</li></ul></div><h3>Integration</h3><p>Integration is the reverse of differentiation.</p><p>∫xⁿ dx = xⁿ⁺¹/(n+1) + c (n ≠ -1)</p>' },
+            { id: 'probability', icon: '🎲', title: 'Probability', desc: 'Basic probability, counting principles, expected value', lessons: 10, questions: 48, progress: 0, content: '<h2>Probability</h2><h3>Basic Probability</h3><p>P(A) = Number of favourable outcomes / Total outcomes</p><div class="key-point"><div class="key-point-title">Key Rules</div><ul><li>P(A or B) = P(A) + P(B) - P(A and B)</li><li>P(A and B) = P(A) × P(B) (independent)</li><li>P(A\') = 1 - P(A)</li></ul></div><h3>Arrangements & Selections</h3><ul><li><strong>Permutations:</strong> nPr = n!/(n-r)!</li><li><strong>Combinations:</strong> nCr = n!/[r!(n-r)!]</li></ul>' },
+            { id: 'statistics', icon: '📈', title: 'Statistics', desc: 'Data analysis, mean, standard deviation, distributions', lessons: 12, questions: 52, progress: 0, content: '<h2>Statistics</h2><h3>Measures of Centre</h3><ul><li><strong>Mean:</strong> Sum of values / Number of values</li><li><strong>Median:</strong> Middle value when ordered</li><li><strong>Mode:</strong> Most frequent value</li></ul><div class="key-point"><div class="key-point-title">Standard Deviation</div><p>σ = √[Σ(x - x̄)²/n]</p><p>Measures spread of data from the mean</p></div><h3>Normal Distribution</h3><p>Bell curve: 68% within 1σ, 95% within 2σ, 99.7% within 3σ</p>' },
+            { id: 'complex', icon: '🔢', title: 'Complex Numbers', desc: 'Imaginary numbers, operations, Argand diagram, De Moivre', lessons: 10, questions: 42, progress: 0, content: '<h2>Complex Numbers</h2><h3>Basics</h3><p>i = √(-1), so i² = -1</p><p>Complex number: z = a + bi (a = real, b = imaginary)</p><div class="key-point"><div class="key-point-title">Operations</div><ul><li>Addition: (a+bi) + (c+di) = (a+c) + (b+d)i</li><li>Multiplication: (a+bi)(c+di) = (ac-bd) + (ad+bc)i</li><li>Conjugate: z* = a - bi</li><li>Modulus: |z| = √(a² + b²)</li></ul></div><h3>Argand Diagram</h3><p>Plot complex numbers on a plane (real axis horizontal, imaginary vertical)</p>' },
+            { id: 'sequences', icon: '🔄', title: 'Sequences & Series', desc: 'Arithmetic, geometric sequences, series, financial maths', lessons: 12, questions: 55, progress: 0, content: '<h2>Sequences & Series</h2><h3>Arithmetic Sequence</h3><ul><li>nth term: Tₙ = a + (n-1)d</li><li>Sum: Sₙ = n/2[2a + (n-1)d]</li></ul><div class="key-point"><div class="key-point-title">Geometric Sequence</div><ul><li>nth term: Tₙ = arⁿ⁻¹</li><li>Sum: Sₙ = a(1-rⁿ)/(1-r) or a(rⁿ-1)/(r-1)</li><li>Sum to infinity: S∞ = a/(1-r) (|r| < 1)</li></ul></div>' },
+            { id: 'functions', icon: '📉', title: 'Functions & Graphs', desc: 'Linear, quadratic, exponential, transformations', lessons: 14, questions: 48, progress: 0, content: '<h2>Functions & Graphs</h2><h3>Function Types</h3><ul><li><strong>Linear:</strong> f(x) = mx + c</li><li><strong>Quadratic:</strong> f(x) = ax² + bx + c</li><li><strong>Exponential:</strong> f(x) = aˣ</li><li><strong>Logarithmic:</strong> f(x) = logₐx</li></ul><div class="key-point"><div class="key-point-title">Transformations</div><ul><li>f(x) + k: Shift up k</li><li>f(x + k): Shift left k</li><li>af(x): Vertical stretch by a</li><li>f(ax): Horizontal compression by a</li></ul></div>' },
+            { id: 'vectors', icon: '➡️', title: 'Vectors', desc: 'Vector operations, dot product, applications', lessons: 8, questions: 38, progress: 0, content: '<h2>Vectors</h2><h3>Basic Operations</h3><ul><li>Addition: (a,b) + (c,d) = (a+c, b+d)</li><li>Scalar multiplication: k(a,b) = (ka, kb)</li><li>Magnitude: |v| = √(a² + b²)</li></ul><div class="key-point"><div class="key-point-title">Dot Product</div><p>a · b = |a||b|cos θ = a₁b₁ + a₂b₂</p><p>If a · b = 0, vectors are perpendicular</p></div>' }
         ];
 
         const flashcardsData = {
-            atomic: [
-                { q: "What is the atomic number?", a: "The number of protons in the nucleus of an atom" },
-                { q: "What is the mass number?", a: "The total number of protons and neutrons in the nucleus" },
-                { q: "What are isotopes?", a: "Atoms of the same element with different numbers of neutrons" },
-                { q: "What is electron configuration?", a: "The arrangement of electrons in energy levels and orbitals" },
-                { q: "State the Aufbau principle", a: "Electrons fill orbitals starting from the lowest energy level" },
-                { q: "What is Hund's rule?", a: "Electrons occupy orbitals singly before pairing up" },
-                { q: "What is the Pauli exclusion principle?", a: "No two electrons can have the same four quantum numbers" }
+            algebra: [
+                { q: "What is the quadratic formula?", a: "x = (-b ± √(b² - 4ac)) / 2a" },
+                { q: "What does the discriminant tell us?", a: "b² - 4ac: positive = 2 real roots, zero = 1 root, negative = no real roots" },
+                { q: "What are the laws of indices for multiplication?", a: "aᵐ × aⁿ = aᵐ⁺ⁿ" },
+                { q: "What is aᵐ ÷ aⁿ equal to?", a: "aᵐ⁻ⁿ" },
+                { q: "What is a⁰ equal to?", a: "1 (any non-zero number to the power of 0 equals 1)" },
+                { q: "How do you solve simultaneous equations?", a: "By substitution, elimination, or graphically" },
+                { q: "What is log_a(xy) equal to?", a: "log_a(x) + log_a(y)" }
             ],
-            bonding: [
-                { q: "What is an ionic bond?", a: "A bond formed by the transfer of electrons from a metal to a non-metal" },
-                { q: "What is a covalent bond?", a: "A bond formed by the sharing of electrons between atoms" },
-                { q: "What is electronegativity?", a: "The ability of an atom to attract shared electrons in a covalent bond" },
-                { q: "What is a polar covalent bond?", a: "A covalent bond where electrons are unequally shared" },
-                { q: "What is metallic bonding?", a: "Bonding where positive ions are surrounded by delocalised electrons" },
-                { q: "What is a dative/coordinate bond?", a: "A covalent bond where both electrons come from the same atom" }
+            geometry: [
+                { q: "State the Theorem of Pythagoras", a: "In a right-angled triangle: a² + b² = c² (c is hypotenuse)" },
+                { q: "What is the area of a triangle?", a: "Area = ½ × base × height, or ½ab sin C" },
+                { q: "What is the formula for area of a circle?", a: "A = πr²" },
+                { q: "What is the circumference of a circle?", a: "C = 2πr or C = πd" },
+                { q: "What is the volume of a sphere?", a: "V = (4/3)πr³" },
+                { q: "What is the surface area of a sphere?", a: "SA = 4πr²" },
+                { q: "What is the volume of a cone?", a: "V = (1/3)πr²h" }
             ],
-            stoichiometry: [
-                { q: "What is Avogadro's number?", a: "6.022 × 10²³ - the number of particles in one mole" },
-                { q: "What is the molar mass?", a: "The mass of one mole of a substance, in g/mol" },
-                { q: "How do you calculate moles from mass?", a: "n = m / M (mass divided by molar mass)" },
-                { q: "What is a limiting reagent?", a: "The reactant that is completely consumed first" },
-                { q: "How do you calculate percentage yield?", a: "(Actual yield / Theoretical yield) × 100%" },
-                { q: "What is the molar volume of a gas at STP?", a: "22.4 L/mol (at 0°C and 1 atm)" }
+            trig: [
+                { q: "Define sin θ in a right-angled triangle", a: "sin θ = Opposite / Hypotenuse" },
+                { q: "Define cos θ in a right-angled triangle", a: "cos θ = Adjacent / Hypotenuse" },
+                { q: "Define tan θ in a right-angled triangle", a: "tan θ = Opposite / Adjacent = sin θ / cos θ" },
+                { q: "What is sin²θ + cos²θ equal to?", a: "1 (Pythagorean identity)" },
+                { q: "State the Sine Rule", a: "a/sin A = b/sin B = c/sin C" },
+                { q: "State the Cosine Rule", a: "a² = b² + c² - 2bc cos A" },
+                { q: "What are the exact values of sin 30° and cos 60°?", a: "Both equal ½" }
             ],
-            organic: [
-                { q: "What is the general formula for alkanes?", a: "CₙH₂ₙ₊₂" },
-                { q: "What is the general formula for alkenes?", a: "CₙH₂ₙ" },
-                { q: "What is the functional group in alcohols?", a: "Hydroxyl group (-OH)" },
-                { q: "What is the functional group in carboxylic acids?", a: "Carboxyl group (-COOH)" },
-                { q: "What type of reaction do alkenes undergo?", a: "Addition reactions (across the C=C double bond)" },
-                { q: "What is esterification?", a: "The reaction between an alcohol and carboxylic acid to form an ester and water" }
+            calculus: [
+                { q: "What is the derivative of xⁿ?", a: "nxⁿ⁻¹ (power rule)" },
+                { q: "What is the derivative of sin x?", a: "cos x" },
+                { q: "What is the derivative of cos x?", a: "-sin x" },
+                { q: "What is the derivative of eˣ?", a: "eˣ (it is its own derivative)" },
+                { q: "What is ∫xⁿ dx?", a: "xⁿ⁺¹/(n+1) + C (where n ≠ -1)" },
+                { q: "What does the derivative represent geometrically?", a: "The slope/gradient of the tangent to the curve at that point" },
+                { q: "What is the product rule?", a: "d/dx[uv] = u(dv/dx) + v(du/dx)" }
             ],
-            acids: [
-                { q: "What is the Brønsted-Lowry definition of an acid?", a: "A proton (H⁺) donor" },
-                { q: "What is the Brønsted-Lowry definition of a base?", a: "A proton (H⁺) acceptor" },
-                { q: "How is pH calculated?", a: "pH = -log₁₀[H⁺]" },
-                { q: "What is a strong acid?", a: "An acid that fully dissociates in water" },
-                { q: "What is neutralisation?", a: "The reaction between an acid and a base to form salt and water" }
+            probability: [
+                { q: "What is P(A or B) for mutually exclusive events?", a: "P(A) + P(B)" },
+                { q: "What is P(A and B) for independent events?", a: "P(A) × P(B)" },
+                { q: "What is the formula for conditional probability P(A|B)?", a: "P(A∩B) / P(B)" },
+                { q: "How many ways can n objects be arranged?", a: "n! (n factorial)" },
+                { q: "What is ⁿCᵣ (combinations)?", a: "n! / (r!(n-r)!) - order doesn't matter" },
+                { q: "What is ⁿPᵣ (permutations)?", a: "n! / (n-r)! - order matters" },
+                { q: "What is expected value E(X)?", a: "Sum of (each value × its probability)" }
             ],
-            redox: [
-                { q: "What is oxidation?", a: "Loss of electrons (or gain of oxygen)" },
-                { q: "What is reduction?", a: "Gain of electrons (or loss of oxygen)" },
-                { q: "At which electrode does oxidation occur in electrolysis?", a: "At the anode (oxidation)" },
-                { q: "At which electrode does reduction occur in electrolysis?", a: "At the cathode (reduction)" },
-                { q: "What is Faraday's equation?", a: "Q = It (Charge = Current × Time)" }
+            statistics: [
+                { q: "How do you calculate the mean?", a: "Sum of all values ÷ number of values" },
+                { q: "What is the median?", a: "The middle value when data is arranged in order" },
+                { q: "What is the mode?", a: "The most frequently occurring value" },
+                { q: "What is the formula for standard deviation?", a: "σ = √[Σ(x - x̄)² / n]" },
+                { q: "What does a correlation coefficient of -1 indicate?", a: "Perfect negative linear correlation" },
+                { q: "What is the interquartile range (IQR)?", a: "Q3 - Q1 (the range of the middle 50% of data)" }
             ],
-            rates: [
-                { q: "What are five factors that affect reaction rate?", a: "Temperature, concentration, surface area, catalyst, pressure" },
-                { q: "What is activation energy?", a: "The minimum energy required for a reaction to occur" },
-                { q: "What is a catalyst?", a: "A substance that speeds up a reaction by providing an alternative pathway with lower activation energy" },
-                { q: "What is Le Chatelier's Principle?", a: "When equilibrium is disturbed, it shifts to counteract the change" },
-                { q: "What is dynamic equilibrium?", a: "When the rate of forward reaction equals the rate of reverse reaction" }
+            complex: [
+                { q: "What is i equal to?", a: "√(-1), the imaginary unit" },
+                { q: "What is i² equal to?", a: "-1" },
+                { q: "How do you find the modulus of z = a + bi?", a: "|z| = √(a² + b²)" },
+                { q: "What is the conjugate of z = a + bi?", a: "z̄ = a - bi" },
+                { q: "What is z × z̄ equal to?", a: "|z|² = a² + b² (always real)" },
+                { q: "How do you express a complex number in polar form?", a: "z = r(cos θ + i sin θ) or z = re^(iθ)" }
+            ],
+            sequences: [
+                { q: "What is the formula for the nth term of an arithmetic sequence?", a: "Tₙ = a + (n-1)d, where a = first term, d = common difference" },
+                { q: "What is the sum of n terms of an arithmetic series?", a: "Sₙ = n/2(2a + (n-1)d) or Sₙ = n/2(first + last)" },
+                { q: "What is the formula for the nth term of a geometric sequence?", a: "Tₙ = arⁿ⁻¹, where a = first term, r = common ratio" },
+                { q: "What is the sum of n terms of a geometric series?", a: "Sₙ = a(1-rⁿ)/(1-r) when r ≠ 1" },
+                { q: "What is the sum to infinity of a geometric series?", a: "S∞ = a/(1-r) when |r| < 1" }
+            ],
+            functions: [
+                { q: "What is a function?", a: "A relation where each input has exactly one output" },
+                { q: "What is the domain of a function?", a: "The set of all possible input values (x-values)" },
+                { q: "What is the range of a function?", a: "The set of all possible output values (y-values)" },
+                { q: "What is f(g(x)) called?", a: "A composite function - apply g first, then f" },
+                { q: "How do you find the inverse function f⁻¹(x)?", a: "Swap x and y, then solve for y" },
+                { q: "What is the condition for a function to have an inverse?", a: "It must be one-to-one (injective)" }
+            ],
+            vectors: [
+                { q: "How do you add vectors?", a: "Add corresponding components: (a,b) + (c,d) = (a+c, b+d)" },
+                { q: "What is the magnitude of vector (a, b)?", a: "|v| = √(a² + b²)" },
+                { q: "What is the dot product of (a,b) and (c,d)?", a: "a·c + b·d (scalar result)" },
+                { q: "When are two vectors perpendicular?", a: "When their dot product equals zero" },
+                { q: "How do you find the unit vector?", a: "Divide the vector by its magnitude: v̂ = v/|v|" },
+                { q: "What does the dot product formula a·b = |a||b|cos θ give us?", a: "The angle θ between two vectors" }
             ]
         };
 
         const quizData = {
-            atomic: [
-                { q: "What particle has a positive charge?", options: ["Proton", "Neutron", "Electron", "Photon"], correct: 0, explanation: "Protons have a positive charge and are found in the nucleus." },
-                { q: "An atom with 17 protons and 18 neutrons has a mass number of:", options: ["17", "18", "35", "1"], correct: 2, explanation: "Mass number = protons + neutrons = 17 + 18 = 35" },
-                { q: "Isotopes have different numbers of:", options: ["Protons", "Electrons", "Neutrons", "All"], correct: 2, explanation: "Isotopes have the same protons but different neutrons." },
-                { q: "The electron configuration of Na (Z=11) is:", options: ["2,8", "2,8,1", "2,8,2", "1,8,2"], correct: 1, explanation: "Sodium has 11 electrons: 2 in first shell, 8 in second, 1 in third." }
+            algebra: [
+                { q: "Solve x² - 5x + 6 = 0", options: ["x = 2, 3", "x = -2, -3", "x = 1, 6", "x = -1, -6"], correct: 0, explanation: "Factoring: (x-2)(x-3) = 0, so x = 2 or x = 3" },
+                { q: "If 2^x = 16, what is x?", options: ["2", "3", "4", "8"], correct: 2, explanation: "2^4 = 16, so x = 4" },
+                { q: "What is the discriminant of 2x² + 3x + 5 = 0?", options: ["49", "-31", "31", "-49"], correct: 1, explanation: "b² - 4ac = 9 - 40 = -31 (no real roots)" },
+                { q: "Simplify: log₂(8) + log₂(4)", options: ["3", "5", "12", "32"], correct: 1, explanation: "log₂(8) = 3, log₂(4) = 2, so 3 + 2 = 5" }
             ],
-            bonding: [
-                { q: "Ionic bonds typically form between:", options: ["Two metals", "Two non-metals", "A metal and non-metal", "Metalloids"], correct: 2, explanation: "Ionic bonds form when metals transfer electrons to non-metals." },
-                { q: "The shape of a water molecule is:", options: ["Linear", "Bent", "Tetrahedral", "Trigonal planar"], correct: 1, explanation: "Water has a bent shape due to two bonding pairs and two lone pairs." },
-                { q: "The most electronegative element is:", options: ["Oxygen", "Chlorine", "Fluorine", "Nitrogen"], correct: 2, explanation: "Fluorine has the highest electronegativity (3.98)." }
+            geometry: [
+                { q: "In a right triangle with legs 3 and 4, the hypotenuse is:", options: ["5", "7", "12", "25"], correct: 0, explanation: "By Pythagoras: √(3² + 4²) = √25 = 5" },
+                { q: "The area of a circle with radius 7 is:", options: ["14π", "49π", "21π", "7π"], correct: 1, explanation: "Area = πr² = π(7)² = 49π" },
+                { q: "The volume of a sphere with radius 3 is:", options: ["36π", "27π", "12π", "108π"], correct: 0, explanation: "V = (4/3)πr³ = (4/3)π(27) = 36π" },
+                { q: "What is the surface area of a cube with side 4?", options: ["64", "96", "24", "16"], correct: 1, explanation: "SA = 6s² = 6(16) = 96" }
             ],
-            stoichiometry: [
-                { q: "How many moles are in 36g of water (H₂O)?", options: ["1 mol", "2 mol", "18 mol", "0.5 mol"], correct: 1, explanation: "Molar mass of H₂O = 18 g/mol. n = 36/18 = 2 mol" },
-                { q: "At STP, what volume does 0.5 mol of gas occupy?", options: ["11.2 L", "22.4 L", "44.8 L", "5.6 L"], correct: 0, explanation: "At STP, 1 mol = 22.4 L, so 0.5 mol = 11.2 L" },
-                { q: "What is the molar mass of CaCO₃?", options: ["60 g/mol", "84 g/mol", "100 g/mol", "112 g/mol"], correct: 2, explanation: "M = 40 + 12 + 3(16) = 100 g/mol" }
+            trig: [
+                { q: "What is sin(30°)?", options: ["1/2", "√3/2", "√2/2", "1"], correct: 0, explanation: "sin(30°) = 1/2 is one of the exact values to memorize" },
+                { q: "If cos θ = 0.6, what is sin θ (acute angle)?", options: ["0.4", "0.6", "0.8", "1.0"], correct: 2, explanation: "sin²θ + cos²θ = 1, so sin²θ = 1 - 0.36 = 0.64, sin θ = 0.8" },
+                { q: "In triangle ABC, a/sin A = 10. If sin B = 0.5, then b =", options: ["5", "10", "15", "20"], correct: 0, explanation: "By sine rule: b/sin B = 10, so b = 10 × 0.5 = 5" },
+                { q: "What is tan(45°)?", options: ["0", "1/2", "1", "√2"], correct: 2, explanation: "tan(45°) = 1 because sin(45°) = cos(45°)" }
             ],
-            organic: [
-                { q: "Which is the correct formula for propane?", options: ["C₂H₆", "C₃H₆", "C₃H₈", "C₄H₈"], correct: 2, explanation: "Propane is an alkane: CₙH₂ₙ₊₂ = C₃H₈" },
-                { q: "What is produced when alcohol reacts with carboxylic acid?", options: ["Aldehyde", "Ketone", "Ester", "Ether"], correct: 2, explanation: "Alcohol + carboxylic acid → ester + water" },
-                { q: "Alkenes undergo which type of reaction with bromine?", options: ["Substitution", "Elimination", "Addition", "Condensation"], correct: 2, explanation: "Alkenes undergo addition reactions across the double bond." }
+            calculus: [
+                { q: "What is d/dx(x³)?", options: ["3x", "3x²", "x²", "x⁴/4"], correct: 1, explanation: "Using power rule: d/dx(xⁿ) = nxⁿ⁻¹, so 3x²" },
+                { q: "What is ∫2x dx?", options: ["2x²", "x²", "x² + C", "2x² + C"], correct: 2, explanation: "∫2x dx = 2(x²/2) + C = x² + C" },
+                { q: "The derivative of f(x) = sin(2x) is:", options: ["cos(2x)", "2cos(2x)", "-cos(2x)", "-2cos(2x)"], correct: 1, explanation: "Using chain rule: 2cos(2x)" },
+                { q: "At a maximum point, f'(x) =", options: ["Positive", "Negative", "Zero", "Undefined"], correct: 2, explanation: "At turning points (max/min), the derivative equals zero" }
             ],
-            acids: [
-                { q: "What is the pH of a solution with [H⁺] = 0.001 M?", options: ["1", "2", "3", "4"], correct: 2, explanation: "pH = -log₁₀(0.001) = 3" },
-                { q: "Which is a strong acid?", options: ["Ethanoic acid", "Carbonic acid", "Hydrochloric acid", "Citric acid"], correct: 2, explanation: "HCl is a strong acid that fully dissociates." },
-                { q: "What is formed when NaOH reacts with HCl?", options: ["NaCl + H₂O", "NaCl + H₂", "NaH + ClO", "Na + HClO"], correct: 0, explanation: "NaOH + HCl → NaCl + H₂O (neutralisation)" }
+            probability: [
+                { q: "A coin is tossed 3 times. P(exactly 2 heads) =", options: ["1/8", "3/8", "1/2", "2/3"], correct: 1, explanation: "³C₂ × (1/2)³ = 3 × 1/8 = 3/8" },
+                { q: "How many ways can 5 people be arranged in a line?", options: ["25", "120", "60", "5"], correct: 1, explanation: "5! = 5 × 4 × 3 × 2 × 1 = 120" },
+                { q: "What is ⁵C₂?", options: ["10", "20", "25", "60"], correct: 0, explanation: "⁵C₂ = 5!/(2!3!) = 120/(2×6) = 10" },
+                { q: "P(A) = 0.3, P(B) = 0.4, A and B independent. P(A and B) =", options: ["0.7", "0.12", "0.1", "0.70"], correct: 1, explanation: "For independent events: P(A∩B) = P(A) × P(B) = 0.3 × 0.4 = 0.12" }
             ],
-            redox: [
-                { q: "In Zn + Cu²⁺ → Zn²⁺ + Cu, zinc is:", options: ["Oxidised", "Reduced", "Neither", "Both"], correct: 0, explanation: "Zinc loses electrons (Zn → Zn²⁺ + 2e⁻), so it is oxidised." },
-                { q: "At which electrode does oxidation occur in electrolysis?", options: ["Cathode", "Anode", "Both", "Neither"], correct: 1, explanation: "Oxidation always occurs at the anode (AN OX)." },
-                { q: "What is the oxidation state of S in H₂SO₄?", options: ["+2", "+4", "+6", "-2"], correct: 2, explanation: "2(+1) + S + 4(-2) = 0, so S = +6" }
+            statistics: [
+                { q: "The mean of 2, 4, 6, 8, 10 is:", options: ["5", "6", "7", "8"], correct: 1, explanation: "Mean = (2+4+6+8+10)/5 = 30/5 = 6" },
+                { q: "What is the median of 3, 7, 2, 9, 5?", options: ["5", "7", "5.2", "9"], correct: 0, explanation: "Ordered: 2, 3, 5, 7, 9. Middle value is 5." },
+                { q: "The IQR is 12 and Q1 is 25. Q3 is:", options: ["13", "37", "17", "50"], correct: 1, explanation: "IQR = Q3 - Q1, so Q3 = Q1 + IQR = 25 + 12 = 37" },
+                { q: "A correlation coefficient of r = 0 indicates:", options: ["Strong positive", "Strong negative", "No linear correlation", "Perfect correlation"], correct: 2, explanation: "r = 0 means no linear relationship between variables" }
             ],
-            rates: [
-                { q: "Increasing temperature increases rate because:", options: ["More energetic collisions", "Lower activation energy", "Better catalyst", "Equilibrium shifts"], correct: 0, explanation: "Higher temperature means faster particles with more kinetic energy." },
-                { q: "A catalyst works by:", options: ["Increasing temperature", "Providing alternative pathway", "Increasing concentration", "Shifting equilibrium"], correct: 1, explanation: "Catalysts provide an alternative pathway with lower activation energy." },
-                { q: "For an exothermic reaction, increasing temperature will:", options: ["Shift right", "Shift left", "No effect", "Stop reaction"], correct: 1, explanation: "By Le Chatelier's principle, heating favours the endothermic (reverse) direction." }
+            complex: [
+                { q: "Simplify i⁴:", options: ["-1", "1", "i", "-i"], correct: 1, explanation: "i² = -1, so i⁴ = (i²)² = (-1)² = 1" },
+                { q: "The modulus of 3 + 4i is:", options: ["5", "7", "12", "25"], correct: 0, explanation: "|3 + 4i| = √(3² + 4²) = √25 = 5" },
+                { q: "The conjugate of 2 - 3i is:", options: ["2 + 3i", "-2 + 3i", "-2 - 3i", "3 - 2i"], correct: 0, explanation: "Change the sign of the imaginary part: 2 + 3i" },
+                { q: "(1 + i)(1 - i) =", options: ["0", "1", "2", "2i"], correct: 2, explanation: "(1+i)(1-i) = 1 - i² = 1 - (-1) = 2" }
+            ],
+            sequences: [
+                { q: "The 10th term of arithmetic sequence 3, 7, 11, ... is:", options: ["39", "43", "35", "47"], correct: 0, explanation: "a = 3, d = 4. T₁₀ = 3 + 9(4) = 39" },
+                { q: "Sum of first 5 terms of 2, 4, 8, 16, ... is:", options: ["30", "62", "31", "64"], correct: 1, explanation: "Geometric: S₅ = 2(1-2⁵)/(1-2) = 2(1-32)/(-1) = 62" },
+                { q: "The sum to infinity of 1 + 1/2 + 1/4 + ... is:", options: ["1", "2", "∞", "1.5"], correct: 1, explanation: "S∞ = a/(1-r) = 1/(1-0.5) = 2" },
+                { q: "If T₃ = 12 and T₅ = 48 in a GP, the common ratio is:", options: ["2", "3", "4", "6"], correct: 0, explanation: "T₅/T₃ = ar⁴/ar² = r² = 48/12 = 4, so r = 2" }
+            ],
+            functions: [
+                { q: "If f(x) = 2x + 1, what is f(3)?", options: ["5", "6", "7", "8"], correct: 2, explanation: "f(3) = 2(3) + 1 = 7" },
+                { q: "The domain of f(x) = √(x-4) is:", options: ["x ≥ 4", "x > 4", "x ≤ 4", "All reals"], correct: 0, explanation: "x - 4 ≥ 0 for the square root, so x ≥ 4" },
+                { q: "If f(x) = x² and g(x) = x + 1, then f(g(x)) =", options: ["x² + 1", "(x+1)²", "x² + x", "x² + 2x"], correct: 1, explanation: "f(g(x)) = f(x+1) = (x+1)²" },
+                { q: "The inverse of f(x) = 3x - 6 is:", options: ["(x+6)/3", "(x-6)/3", "3x + 6", "-3x + 6"], correct: 0, explanation: "y = 3x - 6, swap: x = 3y - 6, solve: y = (x+6)/3" }
+            ],
+            vectors: [
+                { q: "|(3, 4)| =", options: ["5", "7", "12", "1"], correct: 0, explanation: "|(3,4)| = √(9+16) = √25 = 5" },
+                { q: "(2, 3) · (4, -1) =", options: ["5", "8", "11", "-5"], correct: 0, explanation: "Dot product: 2(4) + 3(-1) = 8 - 3 = 5" },
+                { q: "If a · b = 0, the vectors are:", options: ["Parallel", "Perpendicular", "Equal", "Opposite"], correct: 1, explanation: "Dot product = 0 means the vectors are perpendicular" },
+                { q: "The unit vector in the direction of (6, 8) is:", options: ["(0.6, 0.8)", "(3, 4)", "(1, 1)", "(0.8, 0.6)"], correct: 0, explanation: "|v| = 10, so unit vector = (6/10, 8/10) = (0.6, 0.8)" }
             ]
         };
 
         const formulasData = [
-            { name: "Number of moles", equation: "n = m / M", desc: "Calculate moles from mass and molar mass", vars: "n = moles, m = mass (g), M = molar mass (g/mol)", category: "stoich" },
-            { name: "Concentration", equation: "C = n / V", desc: "Calculate molarity from moles and volume", vars: "C = concentration (M), n = moles, V = volume (L)", category: "stoich" },
-            { name: "Dilution", equation: "C₁V₁ = C₂V₂", desc: "Calculate dilution concentrations/volumes", vars: "C = concentration, V = volume", category: "stoich" },
-            { name: "Percentage Yield", equation: "% = (Actual / Theoretical) × 100", desc: "Calculate reaction efficiency", vars: "Actual = experimental, Theoretical = calculated", category: "stoich" },
-            { name: "Ideal Gas Equation", equation: "PV = nRT", desc: "Relates pressure, volume, moles and temperature", vars: "P = pressure, V = volume, n = moles, R = 8.314, T = temp (K)", category: "gas" },
-            { name: "Boyle's Law", equation: "P₁V₁ = P₂V₂", desc: "Pressure-volume at constant temperature", vars: "P = pressure, V = volume", category: "gas" },
-            { name: "Charles's Law", equation: "V₁/T₁ = V₂/T₂", desc: "Volume-temperature at constant pressure", vars: "V = volume, T = temperature (K)", category: "gas" },
-            { name: "pH", equation: "pH = -log₁₀[H⁺]", desc: "Calculate pH from hydrogen ion concentration", vars: "[H⁺] = hydrogen ion concentration (M)", category: "acids" },
-            { name: "pOH", equation: "pOH = -log₁₀[OH⁻]", desc: "Calculate pOH from hydroxide ion concentration", vars: "[OH⁻] = hydroxide ion concentration (M)", category: "acids" },
-            { name: "pH + pOH", equation: "pH + pOH = 14", desc: "Relationship at 25°C", vars: "At 25°C, pKw = 14", category: "acids" },
-            { name: "Heat Energy", equation: "q = mcΔT", desc: "Calculate heat in calorimetry", vars: "q = heat (J), m = mass (g), c = specific heat, ΔT = temp change", category: "thermo" },
-            { name: "Enthalpy of Reaction", equation: "ΔH = ΣΔHf(products) - ΣΔHf(reactants)", desc: "Using formation enthalpies", vars: "ΔHf = enthalpy of formation", category: "thermo" },
-            { name: "Faraday's Law", equation: "Q = It", desc: "Charge transferred in electrolysis", vars: "Q = charge (C), I = current (A), t = time (s)", category: "redox" },
-            { name: "Equilibrium Constant", equation: "Kc = [products]ᵖ / [reactants]ʳ", desc: "Equilibrium expression", vars: "Concentrations raised to stoichiometric coefficients", category: "rates" }
+            { name: "Quadratic Formula", equation: "x = (-b ± √(b² - 4ac)) / 2a", desc: "Solve ax² + bx + c = 0", vars: "a, b, c = coefficients", category: "algebra" },
+            { name: "Discriminant", equation: "Δ = b² - 4ac", desc: "Determines nature of roots", vars: "Δ > 0: two real, Δ = 0: one real, Δ < 0: none", category: "algebra" },
+            { name: "Area of Triangle", equation: "A = ½ab sin C", desc: "Area using two sides and included angle", vars: "a, b = sides, C = included angle", category: "geometry" },
+            { name: "Sine Rule", equation: "a/sin A = b/sin B = c/sin C", desc: "Relating sides and angles", vars: "a, b, c = sides, A, B, C = opposite angles", category: "trig" },
+            { name: "Cosine Rule", equation: "a² = b² + c² - 2bc cos A", desc: "Finding sides/angles in any triangle", vars: "a = side opposite angle A", category: "trig" },
+            { name: "Area of Circle", equation: "A = πr²", desc: "Area from radius", vars: "r = radius", category: "geometry" },
+            { name: "Volume of Sphere", equation: "V = (4/3)πr³", desc: "Volume from radius", vars: "r = radius", category: "geometry" },
+            { name: "Power Rule (Derivative)", equation: "d/dx(xⁿ) = nxⁿ⁻¹", desc: "Differentiate powers of x", vars: "n = any real number", category: "calculus" },
+            { name: "Power Rule (Integral)", equation: "∫xⁿ dx = xⁿ⁺¹/(n+1) + C", desc: "Integrate powers of x (n ≠ -1)", vars: "C = constant of integration", category: "calculus" },
+            { name: "Arithmetic Sequence", equation: "Tₙ = a + (n-1)d", desc: "nth term of arithmetic sequence", vars: "a = first term, d = common difference", category: "sequences" },
+            { name: "Arithmetic Series Sum", equation: "Sₙ = n/2[2a + (n-1)d]", desc: "Sum of n terms", vars: "n = number of terms", category: "sequences" },
+            { name: "Geometric Sequence", equation: "Tₙ = arⁿ⁻¹", desc: "nth term of geometric sequence", vars: "a = first term, r = common ratio", category: "sequences" },
+            { name: "Geometric Series Sum", equation: "Sₙ = a(1-rⁿ)/(1-r)", desc: "Sum of n terms (r ≠ 1)", vars: "n = number of terms", category: "sequences" },
+            { name: "Sum to Infinity", equation: "S∞ = a/(1-r)", desc: "Infinite geometric series (|r| < 1)", vars: "a = first term, r = ratio", category: "sequences" },
+            { name: "Combinations", equation: "ⁿCᵣ = n!/(r!(n-r)!)", desc: "Choose r from n (order doesn't matter)", vars: "n = total, r = chosen", category: "probability" },
+            { name: "Permutations", equation: "ⁿPᵣ = n!/(n-r)!", desc: "Arrange r from n (order matters)", vars: "n = total, r = arranged", category: "probability" },
+            { name: "Standard Deviation", equation: "σ = √[Σ(x - x̄)² / n]", desc: "Measure of spread from mean", vars: "x̄ = mean, n = sample size", category: "statistics" },
+            { name: "Complex Modulus", equation: "|z| = √(a² + b²)", desc: "Modulus of z = a + bi", vars: "a = real part, b = imaginary part", category: "complex" }
         ];
 
         const experimentsData = [
-            { id: 1, title: "Flame Tests", badge: "Inorganic", icon: "🔥", desc: "Identify metal ions by flame colour" },
-            { id: 2, title: "Titration (Acid-Base)", badge: "Quantitative", icon: "🧪", desc: "Determine concentration by neutralisation" },
-            { id: 3, title: "Rate of Reaction", badge: "Kinetics", icon: "⏱️", desc: "Measure effect of concentration on rate" },
-            { id: 4, title: "Preparation of Ethene", badge: "Organic", icon: "🧬", desc: "Dehydration of ethanol" },
-            { id: 5, title: "Esterification", badge: "Organic", icon: "🍎", desc: "Prepare an ester from alcohol and acid" },
-            { id: 6, title: "Electrolysis of Water", badge: "Electrochemistry", icon: "⚡", desc: "Decompose water into H₂ and O₂" },
-            { id: 7, title: "Heat of Reaction", badge: "Thermochemistry", icon: "🌡️", desc: "Measure enthalpy of neutralisation" },
-            { id: 8, title: "Tests for Anions", badge: "Analytical", icon: "🔬", desc: "Identify carbonate, sulfate, chloride" }
+            { id: 1, title: "Geometric Constructions", badge: "Geometry", icon: "📐", desc: "Compass and straightedge constructions" },
+            { id: 2, title: "Graph Sketching", badge: "Functions", icon: "📈", desc: "Sketching polynomial and trig functions" },
+            { id: 3, title: "Trigonometric Problems", badge: "Trigonometry", icon: "📏", desc: "Solve real-world trig problems" },
+            { id: 4, title: "Statistical Analysis", badge: "Statistics", icon: "📊", desc: "Calculate mean, median, standard deviation" },
+            { id: 5, title: "Probability Experiments", badge: "Probability", icon: "🎲", desc: "Simulate probability outcomes" },
+            { id: 6, title: "Calculus Applications", badge: "Calculus", icon: "∫", desc: "Area under curves and rates of change" },
+            { id: 7, title: "Financial Maths", badge: "Applied", icon: "💰", desc: "Compound interest and depreciation" },
+            { id: 8, title: "Proof Writing", badge: "Algebra", icon: "✓", desc: "Mathematical proofs and theorems" }
         ];
 
         // ==================== STATE ====================
