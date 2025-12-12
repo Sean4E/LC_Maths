@@ -636,13 +636,13 @@
             <nav class="nav">
                 <button class="nav-btn active" data-section="dashboard"><span class="icon">📊</span><span>Dashboard</span></button>
                 <button class="nav-btn" data-section="topics"><span class="icon">📚</span><span>Topics</span></button>
-                <button class="nav-btn" data-section="periodic"><span class="icon">⚛️</span><span>Periodic Table</span></button>
+                <button class="nav-btn" data-section="formulatables"><span class="icon">📋</span><span>Tables & Logs</span></button>
                 <button class="nav-btn" data-section="flashcards"><span class="icon">🃏</span><span>Flashcards</span></button>
                 <button class="nav-btn" data-section="quiz"><span class="icon">❓</span><span>Quiz</span></button>
                 <button class="nav-btn" data-section="calculator"><span class="icon">🧮</span><span>Calculators</span></button>
                 <button class="nav-btn" data-section="formulas"><span class="icon">📐</span><span>Formulas</span></button>
                 <button class="nav-btn" data-section="mindmaps"><span class="icon">🧠</span><span>Mind Maps</span></button>
-                <button class="nav-btn" data-section="experiments"><span class="icon">🧪</span><span>Experiments</span></button>
+                <button class="nav-btn" data-section="experiments"><span class="icon">💡</span><span>Techniques</span></button>
                 <button class="nav-btn" data-section="dataTables"><span class="icon">📋</span><span>Data Tables</span></button>
                 <button class="nav-btn" data-section="glossary"><span class="icon">📖</span><span>Glossary</span></button>
                 <button class="nav-btn" data-section="examMode"><span class="icon">🎯</span><span>Exam Mode</span></button>
@@ -653,7 +653,7 @@
             <section class="section active" id="dashboard">
                 <div class="section-header">
                     <h1 class="section-title">Welcome back! 👋</h1>
-                    <p class="section-subtitle">Continue your chemistry journey</p>
+                    <p class="section-subtitle">Continue your maths journey</p>
                 </div>
                 <div class="dashboard-grid">
                     <div>
@@ -729,7 +729,7 @@
             <section class="section" id="topics">
                 <div class="section-header">
                     <h1 class="section-title">📚 Study Topics</h1>
-                    <p class="section-subtitle">Complete coverage of the LC Chemistry syllabus</p>
+                    <p class="section-subtitle">Complete coverage of the LC Mathematics syllabus</p>
                 </div>
                 <div class="card-grid" id="topicsGrid"></div>
                 <div class="topic-view" id="topicView">
@@ -738,26 +738,21 @@
                 </div>
             </section>
 
-            <!-- Periodic Table -->
-            <section class="section" id="periodic">
+            <!-- Formula Tables & Logs -->
+            <section class="section" id="formulatables">
                 <div class="section-header">
-                    <h1 class="section-title">⚛️ Interactive Periodic Table</h1>
-                    <p class="section-subtitle">Click any element to learn more</p>
+                    <h1 class="section-title">📋 Maths Tables & Logs</h1>
+                    <p class="section-subtitle">Reference tables from the Formulae and Tables booklet</p>
+                </div>
+                <div class="formula-categories">
+                    <button class="formula-cat-btn active" data-mathtable="trig">Trig Values</button>
+                    <button class="formula-cat-btn" data-mathtable="logs">Log Tables</button>
+                    <button class="formula-cat-btn" data-mathtable="squares">Squares</button>
+                    <button class="formula-cat-btn" data-mathtable="derivatives">Derivatives</button>
+                    <button class="formula-cat-btn" data-mathtable="integrals">Integrals</button>
                 </div>
                 <div class="card">
-                    <div class="periodic-container">
-                        <div class="periodic-table" id="periodicTable"></div>
-                    </div>
-                    <div class="periodic-legend">
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(255, 0, 110, 0.3);"></div>Alkali</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(255, 190, 11, 0.3);"></div>Alkaline Earth</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(0, 212, 255, 0.2);"></div>Transition</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(131, 56, 236, 0.3);"></div>Post-Trans</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(0, 255, 136, 0.2);"></div>Metalloid</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(255, 255, 255, 0.1);"></div>Nonmetal</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(0, 255, 200, 0.3);"></div>Halogen</div>
-                        <div class="legend-item"><div class="legend-color" style="background: rgba(100, 100, 255, 0.3);"></div>Noble Gas</div>
-                    </div>
+                    <div id="mathTableContent"></div>
                 </div>
             </section>
 
@@ -858,63 +853,80 @@
             <!-- Calculator -->
             <section class="section" id="calculator">
                 <div class="section-header">
-                    <h1 class="section-title">🧮 Chemistry Calculators</h1>
-                    <p class="section-subtitle">Essential tools for solving chemistry problems</p>
+                    <h1 class="section-title">🧮 Maths Calculators</h1>
+                    <p class="section-subtitle">Essential tools for solving maths problems</p>
                 </div>
                 <div class="calculator-grid">
                     <div class="calc-card">
-                        <h3 class="calc-title">⚖️ Mole Calculator</h3>
+                        <h3 class="calc-title">📊 Quadratic Solver</h3>
                         <div class="calc-form">
-                            <div class="input-group"><label>Mass (g)</label><input type="number" id="moleMass" placeholder="Enter mass"></div>
-                            <div class="input-group"><label>Molar Mass (g/mol)</label><input type="number" id="moleMolarMass" placeholder="Enter molar mass"></div>
-                            <button class="btn btn-primary" onclick="calculateMoles()">Calculate</button>
-                            <div class="calc-result"><div class="calc-result-label">Number of Moles</div><div class="calc-result-value" id="moleResult">—</div></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">ax² + bx + c = 0</p>
+                            <div class="input-group"><label>a</label><input type="number" id="quadA" placeholder="Coefficient of x²"></div>
+                            <div class="input-group"><label>b</label><input type="number" id="quadB" placeholder="Coefficient of x"></div>
+                            <div class="input-group"><label>c</label><input type="number" id="quadC" placeholder="Constant"></div>
+                            <button class="btn btn-primary" onclick="solveQuadratic()">Solve</button>
+                            <div class="calc-result"><div class="calc-result-label">Solutions</div><div class="calc-result-value" id="quadResult">—</div></div>
+                            <div id="quadDiscriminant" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);"></div>
                         </div>
                     </div>
                     <div class="calc-card">
-                        <h3 class="calc-title">🧪 Concentration Calculator</h3>
+                        <h3 class="calc-title">📐 Pythagoras Calculator</h3>
                         <div class="calc-form">
-                            <div class="input-group"><label>Number of Moles (mol)</label><input type="number" id="concMoles" placeholder="Enter moles"></div>
-                            <div class="input-group"><label>Volume (L)</label><input type="number" id="concVolume" placeholder="Enter volume"></div>
-                            <button class="btn btn-primary" onclick="calculateConcentration()">Calculate</button>
-                            <div class="calc-result"><div class="calc-result-label">Concentration (M)</div><div class="calc-result-value" id="concResult">—</div></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">a² + b² = c²</p>
+                            <div class="input-group"><label>Side a</label><input type="number" id="pythA" placeholder="Length of a" step="any"></div>
+                            <div class="input-group"><label>Side b</label><input type="number" id="pythB" placeholder="Length of b" step="any"></div>
+                            <button class="btn btn-primary" onclick="calculatePythagoras()">Find Hypotenuse</button>
+                            <div class="calc-result"><div class="calc-result-label">Hypotenuse (c)</div><div class="calc-result-value" id="pythResult">—</div></div>
                         </div>
                     </div>
                     <div class="calc-card">
-                        <h3 class="calc-title">💧 Dilution (C₁V₁ = C₂V₂)</h3>
+                        <h3 class="calc-title">📏 Distance Calculator</h3>
                         <div class="calc-form">
-                            <div class="input-group"><label>Initial Concentration (M)</label><input type="number" id="dilC1" placeholder="C₁"></div>
-                            <div class="input-group"><label>Initial Volume (mL)</label><input type="number" id="dilV1" placeholder="V₁"></div>
-                            <div class="input-group"><label>Final Concentration (M)</label><input type="number" id="dilC2" placeholder="C₂"></div>
-                            <button class="btn btn-primary" onclick="calculateDilution()">Calculate V₂</button>
-                            <div class="calc-result"><div class="calc-result-label">Final Volume (mL)</div><div class="calc-result-value" id="dilResult">—</div></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">Point 1 (x₁, y₁) to Point 2 (x₂, y₂)</p>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                                <div class="input-group"><label>x₁</label><input type="number" id="distX1" step="any"></div>
+                                <div class="input-group"><label>y₁</label><input type="number" id="distY1" step="any"></div>
+                                <div class="input-group"><label>x₂</label><input type="number" id="distX2" step="any"></div>
+                                <div class="input-group"><label>y₂</label><input type="number" id="distY2" step="any"></div>
+                            </div>
+                            <button class="btn btn-primary" onclick="calculateDistance()">Calculate</button>
+                            <div class="calc-result"><div class="calc-result-label">Distance</div><div class="calc-result-value" id="distResult">—</div></div>
                         </div>
                     </div>
                     <div class="calc-card">
-                        <h3 class="calc-title">📊 pH Calculator</h3>
+                        <h3 class="calc-title">🔢 Combinations & Permutations</h3>
                         <div class="calc-form">
-                            <div class="input-group"><label>[H⁺] Concentration (M)</label><input type="number" id="phConc" placeholder="e.g., 0.001" step="any"></div>
-                            <button class="btn btn-primary" onclick="calculatePH()">Calculate pH</button>
-                            <div class="calc-result"><div class="calc-result-label">pH Value</div><div class="calc-result-value" id="phResult">—</div></div>
+                            <div class="input-group"><label>n (total items)</label><input type="number" id="combN" placeholder="e.g., 10"></div>
+                            <div class="input-group"><label>r (items chosen)</label><input type="number" id="combR" placeholder="e.g., 3"></div>
+                            <button class="btn btn-primary" onclick="calculateCombPerm()">Calculate</button>
+                            <div class="calc-result"><div class="calc-result-label">ⁿCᵣ (Combinations)</div><div class="calc-result-value" id="combResult">—</div></div>
+                            <div class="calc-result"><div class="calc-result-label">ⁿPᵣ (Permutations)</div><div class="calc-result-value" id="permResult">—</div></div>
                         </div>
                     </div>
                     <div class="calc-card">
-                        <h3 class="calc-title">💨 Ideal Gas Law (PV = nRT)</h3>
+                        <h3 class="calc-title">📈 Compound Interest</h3>
                         <div class="calc-form">
-                            <div class="input-group"><label>Pressure (atm)</label><input type="number" id="gasP" placeholder="P"></div>
-                            <div class="input-group"><label>Volume (L)</label><input type="number" id="gasV" placeholder="V"></div>
-                            <div class="input-group"><label>Temperature (K)</label><input type="number" id="gasT" placeholder="T"></div>
-                            <button class="btn btn-primary" onclick="calculateGas()">Calculate n</button>
-                            <div class="calc-result"><div class="calc-result-label">Moles of Gas (n)</div><div class="calc-result-value" id="gasResult">—</div></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">A = P(1 + r/100)ⁿ</p>
+                            <div class="input-group"><label>Principal (€)</label><input type="number" id="compP" placeholder="Initial amount"></div>
+                            <div class="input-group"><label>Rate (%)</label><input type="number" id="compR" placeholder="Annual rate" step="0.1"></div>
+                            <div class="input-group"><label>Years (n)</label><input type="number" id="compN" placeholder="Time period"></div>
+                            <button class="btn btn-primary" onclick="calculateCompound()">Calculate</button>
+                            <div class="calc-result"><div class="calc-result-label">Final Amount</div><div class="calc-result-value" id="compResult">—</div></div>
                         </div>
                     </div>
                     <div class="calc-card">
-                        <h3 class="calc-title">⚗️ Molar Mass Calculator</h3>
+                        <h3 class="calc-title">📏 Slope Calculator</h3>
                         <div class="calc-form">
-                            <div class="input-group"><label>Chemical Formula</label><input type="text" id="molarFormula" placeholder="e.g., H2SO4, NaCl"></div>
-                            <button class="btn btn-primary" onclick="calculateMolarMass()">Calculate</button>
-                            <div class="calc-result"><div class="calc-result-label">Molar Mass</div><div class="calc-result-value" id="molarMassResult">—</div></div>
-                            <div id="molarMassBreakdown" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);"></div>
+                            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">m = (y₂ - y₁) / (x₂ - x₁)</p>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                                <div class="input-group"><label>x₁</label><input type="number" id="slopeX1" step="any"></div>
+                                <div class="input-group"><label>y₁</label><input type="number" id="slopeY1" step="any"></div>
+                                <div class="input-group"><label>x₂</label><input type="number" id="slopeX2" step="any"></div>
+                                <div class="input-group"><label>y₂</label><input type="number" id="slopeY2" step="any"></div>
+                            </div>
+                            <button class="btn btn-primary" onclick="calculateSlope()">Calculate</button>
+                            <div class="calc-result"><div class="calc-result-label">Slope (m)</div><div class="calc-result-value" id="slopeResult">—</div></div>
+                            <div id="slopeEquation" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);"></div>
                         </div>
                     </div>
                 </div>
@@ -924,16 +936,16 @@
             <section class="section" id="formulas">
                 <div class="section-header">
                     <h1 class="section-title">📐 Formula Reference</h1>
-                    <p class="section-subtitle">All the formulas you need for the LC Chemistry exam</p>
+                    <p class="section-subtitle">All the formulas you need for the LC Mathematics exam</p>
                 </div>
                 <div class="formula-categories">
                     <button class="formula-cat-btn active" data-category="all">All</button>
-                    <button class="formula-cat-btn" data-category="stoich">Stoichiometry</button>
-                    <button class="formula-cat-btn" data-category="gas">Gas Laws</button>
-                    <button class="formula-cat-btn" data-category="acids">Acids & Bases</button>
-                    <button class="formula-cat-btn" data-category="thermo">Thermochemistry</button>
-                    <button class="formula-cat-btn" data-category="rates">Rates</button>
-                    <button class="formula-cat-btn" data-category="redox">Electrochemistry</button>
+                    <button class="formula-cat-btn" data-category="algebra">Algebra</button>
+                    <button class="formula-cat-btn" data-category="geometry">Geometry</button>
+                    <button class="formula-cat-btn" data-category="trig">Trigonometry</button>
+                    <button class="formula-cat-btn" data-category="calculus">Calculus</button>
+                    <button class="formula-cat-btn" data-category="probability">Probability</button>
+                    <button class="formula-cat-btn" data-category="sequences">Sequences</button>
                 </div>
                 <div class="formula-list" id="formulaList"></div>
             </section>
@@ -948,15 +960,14 @@
                     <div class="control-group">
                         <span class="control-label">Select Topic</span>
                         <select id="mindmapTopic" onchange="renderMindMap(this.value)">
-                            <option value="atomic">Atomic Structure</option>
-                            <option value="bonding">Chemical Bonding</option>
-                            <option value="stoichiometry">Stoichiometry & The Mole</option>
-                            <option value="organic">Organic Chemistry</option>
-                            <option value="acids">Acids & Bases</option>
-                            <option value="redox">Electrochemistry</option>
-                            <option value="rates">Rates & Equilibrium</option>
-                            <option value="gases">Gases</option>
-                            <option value="thermo">Thermochemistry</option>
+                            <option value="algebra">Algebra</option>
+                            <option value="calculus">Calculus (Higher)</option>
+                            <option value="trigonometry">Trigonometry</option>
+                            <option value="geometry">Coordinate Geometry</option>
+                            <option value="probability">Probability</option>
+                            <option value="statistics">Statistics</option>
+                            <option value="sequences">Sequences & Series</option>
+                            <option value="complex">Complex Numbers (Higher)</option>
                         </select>
                     </div>
                 </div>
@@ -971,11 +982,11 @@
                 </div>
             </section>
 
-            <!-- Experiments -->
+            <!-- Problem Solving -->
             <section class="section" id="experiments">
                 <div class="section-header">
-                    <h1 class="section-title">🧪 Mandatory Experiments</h1>
-                    <p class="section-subtitle">Step-by-step guides for all required practicals</p>
+                    <h1 class="section-title">💡 Problem Solving Techniques</h1>
+                    <p class="section-subtitle">Step-by-step strategies for tackling exam questions</p>
                 </div>
                 <div class="card-grid" id="experimentsGrid"></div>
             </section>
@@ -988,11 +999,11 @@
                 </div>
                 
                 <div class="formula-categories">
-                    <button class="formula-cat-btn active" data-table="electrochemical">Electrochemical Series</button>
-                    <button class="formula-cat-btn" data-table="bondEnergies">Bond Energies</button>
-                    <button class="formula-cat-btn" data-table="enthalpies">Enthalpies</button>
-                    <button class="formula-cat-btn" data-table="constants">Constants</button>
-                    <button class="formula-cat-btn" data-table="indicators">Indicators</button>
+                    <button class="formula-cat-btn active" data-table="trigValues">Trig Values</button>
+                    <button class="formula-cat-btn" data-table="squares">Squares & Roots</button>
+                    <button class="formula-cat-btn" data-table="derivatives">Derivatives</button>
+                    <button class="formula-cat-btn" data-table="integrals">Integrals</button>
+                    <button class="formula-cat-btn" data-table="logRules">Log & Index Laws</button>
                 </div>
                 
                 <div class="card">
@@ -1003,8 +1014,8 @@
             <!-- Glossary -->
             <section class="section" id="glossary">
                 <div class="section-header">
-                    <h1 class="section-title">📖 Chemistry Glossary</h1>
-                    <p class="section-subtitle">Searchable definitions of key terms</p>
+                    <h1 class="section-title">📖 Mathematics Glossary</h1>
+                    <p class="section-subtitle">Searchable definitions of key maths terms</p>
                 </div>
                 
                 <div class="card" style="margin-bottom: 1.5rem;">
@@ -1013,11 +1024,16 @@
                     </div>
                     <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
                         <button class="formula-cat-btn active" data-glossary="all" onclick="filterGlossaryCategory('all')">All</button>
-                        <button class="formula-cat-btn" data-glossary="atomic" onclick="filterGlossaryCategory('atomic')">Atomic</button>
-                        <button class="formula-cat-btn" data-glossary="bonding" onclick="filterGlossaryCategory('bonding')">Bonding</button>
-                        <button class="formula-cat-btn" data-glossary="organic" onclick="filterGlossaryCategory('organic')">Organic</button>
-                        <button class="formula-cat-btn" data-glossary="acids" onclick="filterGlossaryCategory('acids')">Acids/Bases</button>
-                        <button class="formula-cat-btn" data-glossary="redox" onclick="filterGlossaryCategory('redox')">Redox</button>
+                        <button class="formula-cat-btn" data-glossary="algebra" onclick="filterGlossaryCategory('algebra')">Algebra</button>
+                        <button class="formula-cat-btn" data-glossary="calculus" onclick="filterGlossaryCategory('calculus')">Calculus</button>
+                        <button class="formula-cat-btn" data-glossary="trigonometry" onclick="filterGlossaryCategory('trigonometry')">Trig</button>
+                        <button class="formula-cat-btn" data-glossary="geometry" onclick="filterGlossaryCategory('geometry')">Geometry</button>
+                        <button class="formula-cat-btn" data-glossary="probability" onclick="filterGlossaryCategory('probability')">Probability</button>
+                        <button class="formula-cat-btn" data-glossary="statistics" onclick="filterGlossaryCategory('statistics')">Stats</button>
+                        <button class="formula-cat-btn" data-glossary="sequences" onclick="filterGlossaryCategory('sequences')">Sequences</button>
+                        <button class="formula-cat-btn" data-glossary="complex" onclick="filterGlossaryCategory('complex')">Complex</button>
+                        <button class="formula-cat-btn" data-glossary="vectors" onclick="filterGlossaryCategory('vectors')">Vectors</button>
+                        <button class="formula-cat-btn" data-glossary="number" onclick="filterGlossaryCategory('number')">Number</button>
                     </div>
                 </div>
                 
@@ -1640,21 +1656,76 @@
         }
         function quitQuiz() { document.getElementById('quizArea').style.display = 'none'; document.getElementById('quizSetup').style.display = 'block'; }
 
-        // ==================== CALCULATORS ====================
-        function calculateMoles() { const mass = parseFloat(document.getElementById('moleMass').value), molarMass = parseFloat(document.getElementById('moleMolarMass').value); if (!isNaN(mass) && !isNaN(molarMass) && molarMass !== 0) document.getElementById('moleResult').textContent = (mass / molarMass).toFixed(4) + ' mol'; }
-        function calculateConcentration() { const moles = parseFloat(document.getElementById('concMoles').value), volume = parseFloat(document.getElementById('concVolume').value); if (!isNaN(moles) && !isNaN(volume) && volume !== 0) document.getElementById('concResult').textContent = (moles / volume).toFixed(4) + ' M'; }
-        function calculateDilution() { const c1 = parseFloat(document.getElementById('dilC1').value), v1 = parseFloat(document.getElementById('dilV1').value), c2 = parseFloat(document.getElementById('dilC2').value); if (!isNaN(c1) && !isNaN(v1) && !isNaN(c2) && c2 !== 0) document.getElementById('dilResult').textContent = ((c1 * v1) / c2).toFixed(2) + ' mL'; }
-        function calculatePH() { const conc = parseFloat(document.getElementById('phConc').value); if (!isNaN(conc) && conc > 0) document.getElementById('phResult').textContent = (-Math.log10(conc)).toFixed(2); }
-        function calculateGas() { const P = parseFloat(document.getElementById('gasP').value), V = parseFloat(document.getElementById('gasV').value), T = parseFloat(document.getElementById('gasT').value); if (!isNaN(P) && !isNaN(V) && !isNaN(T) && T !== 0) document.getElementById('gasResult').textContent = ((P * V) / (0.0821 * T)).toFixed(4) + ' mol'; }
-        function calculateMolarMass() {
-            const formula = document.getElementById('molarFormula').value.trim();
-            if (!formula) return;
-            const parsed = {}, regex = /([A-Z][a-z]?)(\d*)/g; let match;
-            while ((match = regex.exec(formula)) !== null) { parsed[match[1]] = (parsed[match[1]] || 0) + (match[2] ? parseInt(match[2]) : 1); }
-            let total = 0, breakdown = [];
-            for (const [el, count] of Object.entries(parsed)) { const mass = atomicMasses[el]; if (mass) { total += mass * count; breakdown.push(`${el}: ${mass} × ${count} = ${(mass * count).toFixed(2)}`); } }
-            document.getElementById('molarMassResult').textContent = total.toFixed(2) + ' g/mol';
-            document.getElementById('molarMassBreakdown').innerHTML = breakdown.join('<br>');
+        // ==================== MATHS CALCULATORS ====================
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('quadA').value);
+            const b = parseFloat(document.getElementById('quadB').value);
+            const c = parseFloat(document.getElementById('quadC').value);
+            if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) return;
+            const disc = b*b - 4*a*c;
+            document.getElementById('quadDiscriminant').textContent = `Discriminant: ${disc.toFixed(2)}`;
+            if (disc > 0) {
+                const x1 = (-b + Math.sqrt(disc)) / (2*a);
+                const x2 = (-b - Math.sqrt(disc)) / (2*a);
+                document.getElementById('quadResult').textContent = `x = ${x1.toFixed(4)}, ${x2.toFixed(4)}`;
+            } else if (disc === 0) {
+                const x = -b / (2*a);
+                document.getElementById('quadResult').textContent = `x = ${x.toFixed(4)} (repeated root)`;
+            } else {
+                const real = -b / (2*a);
+                const imag = Math.sqrt(-disc) / (2*a);
+                document.getElementById('quadResult').textContent = `x = ${real.toFixed(2)} ± ${imag.toFixed(2)}i`;
+            }
+        }
+        function calculatePythagoras() {
+            const a = parseFloat(document.getElementById('pythA').value);
+            const b = parseFloat(document.getElementById('pythB').value);
+            if (!isNaN(a) && !isNaN(b)) {
+                const c = Math.sqrt(a*a + b*b);
+                document.getElementById('pythResult').textContent = c.toFixed(4);
+            }
+        }
+        function calculateDistance() {
+            const x1 = parseFloat(document.getElementById('distX1').value);
+            const y1 = parseFloat(document.getElementById('distY1').value);
+            const x2 = parseFloat(document.getElementById('distX2').value);
+            const y2 = parseFloat(document.getElementById('distY2').value);
+            if (!isNaN(x1) && !isNaN(y1) && !isNaN(x2) && !isNaN(y2)) {
+                const d = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+                document.getElementById('distResult').textContent = d.toFixed(4);
+            }
+        }
+        function factorial(n) { return n <= 1 ? 1 : n * factorial(n-1); }
+        function calculateCombPerm() {
+            const n = parseInt(document.getElementById('combN').value);
+            const r = parseInt(document.getElementById('combR').value);
+            if (!isNaN(n) && !isNaN(r) && n >= r && r >= 0) {
+                const comb = factorial(n) / (factorial(r) * factorial(n-r));
+                const perm = factorial(n) / factorial(n-r);
+                document.getElementById('combResult').textContent = comb.toLocaleString();
+                document.getElementById('permResult').textContent = perm.toLocaleString();
+            }
+        }
+        function calculateCompound() {
+            const P = parseFloat(document.getElementById('compP').value);
+            const r = parseFloat(document.getElementById('compR').value);
+            const n = parseFloat(document.getElementById('compN').value);
+            if (!isNaN(P) && !isNaN(r) && !isNaN(n)) {
+                const A = P * Math.pow(1 + r/100, n);
+                document.getElementById('compResult').textContent = '€' + A.toFixed(2);
+            }
+        }
+        function calculateSlope() {
+            const x1 = parseFloat(document.getElementById('slopeX1').value);
+            const y1 = parseFloat(document.getElementById('slopeY1').value);
+            const x2 = parseFloat(document.getElementById('slopeX2').value);
+            const y2 = parseFloat(document.getElementById('slopeY2').value);
+            if (!isNaN(x1) && !isNaN(y1) && !isNaN(x2) && !isNaN(y2) && x2 !== x1) {
+                const m = (y2-y1) / (x2-x1);
+                const c = y1 - m*x1;
+                document.getElementById('slopeResult').textContent = m.toFixed(4);
+                document.getElementById('slopeEquation').textContent = `Line equation: y = ${m.toFixed(2)}x ${c >= 0 ? '+' : ''} ${c.toFixed(2)}`;
+            }
         }
 
         // ==================== FORMULAS ====================
@@ -1666,162 +1737,146 @@
 
         // ==================== MIND MAPS ====================
         const mindmapData = {
-            atomic: {
-                center: { label: 'Atomic Structure', color: '#00d4ff' },
+            algebra: {
+                center: { label: 'Algebra', color: '#00d4ff' },
                 nodes: [
-                    { id: 'subatomic', label: 'Subatomic Particles', color: '#ff006e', desc: 'Atoms are made of protons (positive, in nucleus), neutrons (neutral, in nucleus), and electrons (negative, orbiting nucleus).' },
-                    { id: 'protons', label: 'Protons (+)', color: '#ff006e', parent: 'subatomic', desc: 'Positive charge, mass ≈ 1 amu, found in nucleus. Number of protons = atomic number.' },
-                    { id: 'neutrons', label: 'Neutrons (0)', color: '#ff006e', parent: 'subatomic', desc: 'No charge, mass ≈ 1 amu, found in nucleus. Different neutrons = isotopes.' },
-                    { id: 'electrons', label: 'Electrons (-)', color: '#ff006e', parent: 'subatomic', desc: 'Negative charge, mass ≈ 1/1836 amu, orbit nucleus in shells/orbitals.' },
-                    { id: 'numbers', label: 'Atomic Numbers', color: '#ffbe0b', desc: 'Atomic number (Z) = protons. Mass number (A) = protons + neutrons.' },
-                    { id: 'isotopes', label: 'Isotopes', color: '#ffbe0b', parent: 'numbers', desc: 'Same element, same protons, different neutrons. Same chemical properties, different physical properties.' },
-                    { id: 'config', label: 'Electron Config', color: '#00ff88', desc: 'Arrangement of electrons in energy levels and orbitals around the nucleus.' },
-                    { id: 'shells', label: 'Energy Levels', color: '#00ff88', parent: 'config', desc: 'Shells hold max 2n² electrons: 1st=2, 2nd=8, 3rd=18, 4th=32.' },
-                    { id: 'orbitals', label: 'Orbitals (s,p,d,f)', color: '#00ff88', parent: 'config', desc: 's=2, p=6, d=10, f=14 electrons. Fill order: 1s→2s→2p→3s→3p→4s→3d...' },
-                    { id: 'aufbau', label: 'Aufbau Principle', color: '#8338ec', parent: 'config', desc: 'Electrons fill lowest energy orbitals first.' },
-                    { id: 'hund', label: "Hund's Rule", color: '#8338ec', parent: 'config', desc: 'Electrons occupy orbitals singly before pairing (same spin).' },
-                    { id: 'pauli', label: 'Pauli Exclusion', color: '#8338ec', parent: 'config', desc: 'No two electrons can have the same four quantum numbers.' }
+                    { id: 'quadratics', label: 'Quadratic Equations', color: '#ff006e', desc: 'ax² + bx + c = 0. Solve by factoring, completing square, or quadratic formula.' },
+                    { id: 'formula', label: 'Quadratic Formula', color: '#ff006e', parent: 'quadratics', desc: 'x = (-b ± √(b²-4ac)) / 2a. Works for all quadratics.' },
+                    { id: 'discriminant', label: 'Discriminant b²-4ac', color: '#ff006e', parent: 'quadratics', desc: 'Positive: 2 roots. Zero: 1 root. Negative: no real roots.' },
+                    { id: 'polynomials', label: 'Polynomials', color: '#00ff88', desc: 'Expressions with terms of non-negative integer powers.' },
+                    { id: 'factor-thm', label: 'Factor Theorem', color: '#00ff88', parent: 'polynomials', desc: 'If f(a)=0, then (x-a) is a factor.' },
+                    { id: 'remainder', label: 'Remainder Theorem', color: '#00ff88', parent: 'polynomials', desc: 'f(x)÷(x-a) has remainder f(a).' },
+                    { id: 'indices', label: 'Index Laws', color: '#ffbe0b', desc: 'Rules for manipulating powers and roots.' },
+                    { id: 'multiply', label: 'aᵐ × aⁿ = aᵐ⁺ⁿ', color: '#ffbe0b', parent: 'indices', desc: 'Same base: add powers.' },
+                    { id: 'divide', label: 'aᵐ ÷ aⁿ = aᵐ⁻ⁿ', color: '#ffbe0b', parent: 'indices', desc: 'Same base: subtract powers.' },
+                    { id: 'logs', label: 'Logarithms', color: '#8338ec', desc: 'Inverse of exponentials. If aˣ = b, then logₐb = x.' },
+                    { id: 'log-laws', label: 'Log Laws', color: '#8338ec', parent: 'logs', desc: 'log(ab) = log a + log b. log(a/b) = log a - log b.' },
+                    { id: 'simultan', label: 'Simultaneous Eqns', color: '#8338ec', desc: 'Solve using substitution or elimination method.' }
                 ]
             },
-            bonding: {
-                center: { label: 'Chemical Bonding', color: '#00d4ff' },
+            calculus: {
+                center: { label: 'Calculus', color: '#00d4ff' },
                 nodes: [
-                    { id: 'ionic', label: 'Ionic Bonding', color: '#ff006e', desc: 'Transfer of electrons from metal to non-metal. Forms ions that attract electrostatically.' },
-                    { id: 'ionic-props', label: 'Ionic Properties', color: '#ff006e', parent: 'ionic', desc: 'High m.p./b.p., conduct when molten/dissolved, crystalline lattice, brittle.' },
-                    { id: 'covalent', label: 'Covalent Bonding', color: '#00ff88', desc: 'Sharing of electron pairs between non-metal atoms.' },
-                    { id: 'polar', label: 'Polar Covalent', color: '#00ff88', parent: 'covalent', desc: 'Unequal sharing due to electronegativity difference (0.5-1.7).' },
-                    { id: 'nonpolar', label: 'Non-polar', color: '#00ff88', parent: 'covalent', desc: 'Equal sharing, electronegativity difference < 0.5.' },
-                    { id: 'dative', label: 'Dative/Coordinate', color: '#00ff88', parent: 'covalent', desc: 'Both electrons from same atom (e.g., NH₄⁺, H₃O⁺).' },
-                    { id: 'metallic', label: 'Metallic Bonding', color: '#ffbe0b', desc: 'Sea of delocalised electrons around positive metal ions.' },
-                    { id: 'metal-props', label: 'Metallic Properties', color: '#ffbe0b', parent: 'metallic', desc: 'Good conductors, malleable, ductile, lustrous.' },
-                    { id: 'electro', label: 'Electronegativity', color: '#8338ec', desc: 'Ability to attract shared electrons. Increases across period, decreases down group.' },
-                    { id: 'shapes', label: 'Molecular Shapes', color: '#8338ec', desc: 'VSEPR theory: shapes determined by electron pair repulsion.' },
-                    { id: 'linear', label: 'Linear (180°)', color: '#8338ec', parent: 'shapes', desc: '2 bonding pairs, no lone pairs (e.g., CO₂, BeCl₂).' },
-                    { id: 'bent', label: 'Bent/V-shape', color: '#8338ec', parent: 'shapes', desc: '2 bonding pairs + lone pairs (e.g., H₂O=104.5°, SO₂).' },
-                    { id: 'tetrahedral', label: 'Tetrahedral (109.5°)', color: '#8338ec', parent: 'shapes', desc: '4 bonding pairs, no lone pairs (e.g., CH₄, CCl₄).' }
+                    { id: 'differentiation', label: 'Differentiation', color: '#ff006e', desc: 'Finding the derivative - rate of change of a function.' },
+                    { id: 'power-rule', label: 'Power Rule', color: '#ff006e', parent: 'differentiation', desc: 'd/dx(xⁿ) = nxⁿ⁻¹. Bring power down, reduce by 1.' },
+                    { id: 'chain', label: 'Chain Rule', color: '#ff006e', parent: 'differentiation', desc: 'd/dx[f(g(x))] = f\'(g(x))·g\'(x). For composite functions.' },
+                    { id: 'product', label: 'Product Rule', color: '#ff006e', parent: 'differentiation', desc: '(uv)\' = u\'v + uv\'. For products of functions.' },
+                    { id: 'integration', label: 'Integration', color: '#00ff88', desc: 'Reverse of differentiation. Finding anti-derivatives.' },
+                    { id: 'int-power', label: '∫xⁿdx = xⁿ⁺¹/(n+1)+C', color: '#00ff88', parent: 'integration', desc: 'Add 1 to power, divide by new power.' },
+                    { id: 'definite', label: 'Definite Integrals', color: '#00ff88', parent: 'integration', desc: '∫ₐᵇf(x)dx = F(b) - F(a). Gives area under curve.' },
+                    { id: 'applications', label: 'Applications', color: '#ffbe0b', desc: 'Max/min problems, rates of change, area.' },
+                    { id: 'stationary', label: 'Stationary Points', color: '#ffbe0b', parent: 'applications', desc: 'Where f\'(x) = 0. Can be max, min, or inflection.' },
+                    { id: 'second-deriv', label: 'Second Derivative', color: '#ffbe0b', parent: 'applications', desc: 'f\'\'(x) > 0: minimum. f\'\'(x) < 0: maximum.' },
+                    { id: 'trig-calc', label: 'Trig Calculus', color: '#8338ec', desc: 'd/dx(sin x) = cos x. d/dx(cos x) = -sin x.' },
+                    { id: 'exp-calc', label: 'Exponential', color: '#8338ec', desc: 'd/dx(eˣ) = eˣ. d/dx(ln x) = 1/x.' }
                 ]
             },
-            stoichiometry: {
-                center: { label: 'Stoichiometry', color: '#00d4ff' },
+            trigonometry: {
+                center: { label: 'Trigonometry', color: '#00d4ff' },
                 nodes: [
-                    { id: 'mole', label: 'The Mole', color: '#ff006e', desc: 'SI unit for amount. 1 mole = 6.022 × 10²³ particles (Avogadro\'s number).' },
-                    { id: 'molar-mass', label: 'Molar Mass', color: '#ff006e', parent: 'mole', desc: 'Mass of 1 mole in g/mol. Equals relative atomic/molecular mass in grams.' },
-                    { id: 'n-formula', label: 'n = m/M', color: '#ff006e', parent: 'mole', desc: 'Moles = mass ÷ molar mass. Rearrange: m = nM, M = m/n.' },
-                    { id: 'concentration', label: 'Concentration', color: '#00ff88', desc: 'Amount per unit volume. C = n/V (mol/L or M).' },
-                    { id: 'dilution', label: 'Dilution C₁V₁=C₂V₂', color: '#00ff88', parent: 'concentration', desc: 'Moles before = moles after dilution.' },
-                    { id: 'gases', label: 'Molar Volume', color: '#ffbe0b', desc: 'At STP (0°C, 1atm): 1 mole of any gas = 22.4 L.' },
-                    { id: 'calcs', label: 'Stoich Calculations', color: '#8338ec', desc: 'Use balanced equation ratios to convert between substances.' },
-                    { id: 'limiting', label: 'Limiting Reagent', color: '#8338ec', parent: 'calcs', desc: 'Reactant completely consumed first, limits product formed.' },
-                    { id: 'excess', label: 'Excess Reagent', color: '#8338ec', parent: 'calcs', desc: 'Reactant left over after reaction completes.' },
-                    { id: 'yield', label: 'Percentage Yield', color: '#8338ec', parent: 'calcs', desc: '(Actual yield ÷ Theoretical yield) × 100%.' },
-                    { id: 'atom-econ', label: 'Atom Economy', color: '#8338ec', parent: 'calcs', desc: '(Mr of desired product ÷ Mr of all products) × 100%.' }
+                    { id: 'ratios', label: 'Trig Ratios', color: '#ff006e', desc: 'sin, cos, tan for right-angled triangles.' },
+                    { id: 'sohcahtoa', label: 'SOHCAHTOA', color: '#ff006e', parent: 'ratios', desc: 'sin=O/H, cos=A/H, tan=O/A.' },
+                    { id: 'special', label: 'Special Angles', color: '#ff006e', parent: 'ratios', desc: '30°, 45°, 60° have exact values. Learn these!' },
+                    { id: 'rules', label: 'Sine & Cosine Rules', color: '#00ff88', desc: 'For non-right triangles.' },
+                    { id: 'sine-rule', label: 'Sine Rule', color: '#00ff88', parent: 'rules', desc: 'a/sinA = b/sinB = c/sinC. Use with angle-side pairs.' },
+                    { id: 'cosine-rule', label: 'Cosine Rule', color: '#00ff88', parent: 'rules', desc: 'a² = b² + c² - 2bc·cosA. Use with SAS or SSS.' },
+                    { id: 'identities', label: 'Identities', color: '#ffbe0b', desc: 'Equations true for all values of the variable.' },
+                    { id: 'pythag-id', label: 'sin²θ + cos²θ = 1', color: '#ffbe0b', parent: 'identities', desc: 'Fundamental Pythagorean identity.' },
+                    { id: 'compound', label: 'Compound Angles', color: '#ffbe0b', parent: 'identities', desc: 'sin(A+B), cos(A+B) formulas for Higher Level.' },
+                    { id: 'unit-circle', label: 'Unit Circle', color: '#8338ec', desc: 'Circle radius 1. cos θ = x, sin θ = y.' },
+                    { id: 'radians', label: 'Radians', color: '#8338ec', parent: 'unit-circle', desc: '2π rad = 360°. Arc length s = rθ.' },
+                    { id: 'graphs', label: 'Trig Graphs', color: '#8338ec', desc: 'Period, amplitude, phase shift of sin, cos, tan.' }
                 ]
             },
-            organic: {
-                center: { label: 'Organic Chemistry', color: '#00d4ff' },
+            geometry: {
+                center: { label: 'Coordinate Geometry', color: '#00d4ff' },
                 nodes: [
-                    { id: 'hydrocarbons', label: 'Hydrocarbons', color: '#ff006e', desc: 'Compounds containing only carbon and hydrogen atoms.' },
-                    { id: 'alkanes', label: 'Alkanes CₙH₂ₙ₊₂', color: '#ff006e', parent: 'hydrocarbons', desc: 'Saturated, single bonds only. Undergo substitution reactions.' },
-                    { id: 'alkenes', label: 'Alkenes CₙH₂ₙ', color: '#ff006e', parent: 'hydrocarbons', desc: 'Unsaturated, C=C double bond. Undergo addition reactions.' },
-                    { id: 'alkynes', label: 'Alkynes CₙH₂ₙ₋₂', color: '#ff006e', parent: 'hydrocarbons', desc: 'Unsaturated, C≡C triple bond.' },
-                    { id: 'functional', label: 'Functional Groups', color: '#00ff88', desc: 'Groups of atoms that determine chemical properties.' },
-                    { id: 'alcohols', label: 'Alcohols -OH', color: '#00ff88', parent: 'functional', desc: 'Hydroxyl group. Primary, secondary, tertiary. Oxidation → aldehydes/ketones/acids.' },
-                    { id: 'aldehydes', label: 'Aldehydes -CHO', color: '#00ff88', parent: 'functional', desc: 'Terminal carbonyl. Oxidise to carboxylic acids.' },
-                    { id: 'ketones', label: 'Ketones C=O', color: '#00ff88', parent: 'functional', desc: 'Internal carbonyl. Resistant to oxidation.' },
-                    { id: 'acids', label: 'Carboxylic -COOH', color: '#00ff88', parent: 'functional', desc: 'Weak acids. React with alcohols → esters.' },
-                    { id: 'esters', label: 'Esters -COO-', color: '#00ff88', parent: 'functional', desc: 'Sweet smells. Esterification: acid + alcohol → ester + water.' },
-                    { id: 'reactions', label: 'Reaction Types', color: '#ffbe0b', desc: 'Addition, substitution, elimination, condensation, oxidation.' },
-                    { id: 'polymers', label: 'Polymers', color: '#8338ec', desc: 'Large molecules from repeating monomer units.' },
-                    { id: 'addition-poly', label: 'Addition Polymers', color: '#8338ec', parent: 'polymers', desc: 'From alkenes (e.g., polyethene). No by-products.' },
-                    { id: 'condensation-poly', label: 'Condensation Polymers', color: '#8338ec', parent: 'polymers', desc: 'Release small molecules (e.g., nylon, polyester).' }
+                    { id: 'line', label: 'Straight Line', color: '#ff006e', desc: 'y = mx + c or ax + by + c = 0.' },
+                    { id: 'slope', label: 'Slope m', color: '#ff006e', parent: 'line', desc: 'm = (y₂-y₁)/(x₂-x₁). Rise over run.' },
+                    { id: 'equation', label: 'Line Equation', color: '#ff006e', parent: 'line', desc: 'y - y₁ = m(x - x₁). Point-slope form.' },
+                    { id: 'relationships', label: 'Line Relationships', color: '#00ff88', desc: 'Parallel and perpendicular lines.' },
+                    { id: 'parallel', label: 'Parallel: m₁ = m₂', color: '#00ff88', parent: 'relationships', desc: 'Same slope, never intersect.' },
+                    { id: 'perp', label: 'Perpendicular: m₁m₂ = -1', color: '#00ff88', parent: 'relationships', desc: 'Slopes multiply to -1.' },
+                    { id: 'circle', label: 'Circle', color: '#ffbe0b', desc: 'All points equidistant from center.' },
+                    { id: 'circle-eq', label: '(x-h)² + (y-k)² = r²', color: '#ffbe0b', parent: 'circle', desc: 'Center (h,k), radius r.' },
+                    { id: 'tangent', label: 'Tangent to Circle', color: '#ffbe0b', parent: 'circle', desc: 'Perpendicular to radius at point of contact.' },
+                    { id: 'distance', label: 'Distance Formula', color: '#8338ec', desc: 'd = √[(x₂-x₁)² + (y₂-y₁)²].' },
+                    { id: 'midpoint', label: 'Midpoint', color: '#8338ec', desc: 'M = ((x₁+x₂)/2, (y₁+y₂)/2).' },
+                    { id: 'dividing', label: 'Dividing Segment', color: '#8338ec', desc: 'Internal and external division ratios.' }
                 ]
             },
-            acids: {
-                center: { label: 'Acids & Bases', color: '#00d4ff' },
+            probability: {
+                center: { label: 'Probability', color: '#00d4ff' },
                 nodes: [
-                    { id: 'definitions', label: 'Definitions', color: '#ff006e', desc: 'Arrhenius: H⁺/OH⁻ producers. Brønsted-Lowry: H⁺ donor/acceptor.' },
-                    { id: 'acid-def', label: 'Acid = H⁺ donor', color: '#ff006e', parent: 'definitions', desc: 'Donates protons. Has conjugate base.' },
-                    { id: 'base-def', label: 'Base = H⁺ acceptor', color: '#ff006e', parent: 'definitions', desc: 'Accepts protons. Has conjugate acid.' },
-                    { id: 'ph-scale', label: 'pH Scale', color: '#00ff88', desc: 'pH = -log₁₀[H⁺]. Range 0-14. pH 7 = neutral at 25°C.' },
-                    { id: 'acidic', label: 'Acidic: pH < 7', color: '#00ff88', parent: 'ph-scale', desc: 'Higher [H⁺] than pure water.' },
-                    { id: 'basic', label: 'Basic: pH > 7', color: '#00ff88', parent: 'ph-scale', desc: 'Higher [OH⁻] than pure water. pOH = 14 - pH.' },
-                    { id: 'strong-weak', label: 'Strong vs Weak', color: '#ffbe0b', desc: 'Strong = fully dissociate. Weak = partially dissociate.' },
-                    { id: 'strong-acids', label: 'Strong Acids', color: '#ffbe0b', parent: 'strong-weak', desc: 'HCl, H₂SO₄, HNO₃ - fully ionise in water.' },
-                    { id: 'weak-acids', label: 'Weak Acids', color: '#ffbe0b', parent: 'strong-weak', desc: 'CH₃COOH, H₂CO₃ - equilibrium with undissociated form.' },
-                    { id: 'neutralisation', label: 'Neutralisation', color: '#8338ec', desc: 'Acid + Base → Salt + Water. Exothermic reaction.' },
-                    { id: 'titration', label: 'Titrations', color: '#8338ec', parent: 'neutralisation', desc: 'Determine unknown concentration using known solution.' },
-                    { id: 'indicators', label: 'Indicators', color: '#8338ec', parent: 'titration', desc: 'Phenolphthalein (8.2-10), methyl orange (3.1-4.4).' },
-                    { id: 'buffers', label: 'Buffer Solutions', color: '#8338ec', desc: 'Resist pH changes. Weak acid + conjugate base.' }
+                    { id: 'basic', label: 'Basic Probability', color: '#ff006e', desc: 'P(A) = n(A)/n(S). Favorable over total outcomes.' },
+                    { id: 'complement', label: 'P(A\') = 1 - P(A)', color: '#ff006e', parent: 'basic', desc: 'Probability of NOT A.' },
+                    { id: 'expected', label: 'Expected Value', color: '#ff006e', parent: 'basic', desc: 'E(X) = Σx·P(x). Average over many trials.' },
+                    { id: 'rules', label: 'Probability Rules', color: '#00ff88', desc: 'Addition and multiplication rules.' },
+                    { id: 'addition', label: 'Addition Rule', color: '#00ff88', parent: 'rules', desc: 'P(A∪B) = P(A) + P(B) - P(A∩B).' },
+                    { id: 'multiply', label: 'Multiplication Rule', color: '#00ff88', parent: 'rules', desc: 'P(A∩B) = P(A)·P(B|A).' },
+                    { id: 'independence', label: 'Independence', color: '#ffbe0b', desc: 'Events don\'t affect each other.' },
+                    { id: 'ind-formula', label: 'P(A∩B) = P(A)·P(B)', color: '#ffbe0b', parent: 'independence', desc: 'For independent events only.' },
+                    { id: 'conditional', label: 'P(A|B)', color: '#ffbe0b', parent: 'independence', desc: 'P(A and B)/P(B). Probability given B.' },
+                    { id: 'counting', label: 'Counting', color: '#8338ec', desc: 'Permutations and combinations.' },
+                    { id: 'perms', label: 'Permutations nPr', color: '#8338ec', parent: 'counting', desc: 'Order matters. n!/(n-r)!.' },
+                    { id: 'combs', label: 'Combinations nCr', color: '#8338ec', parent: 'counting', desc: 'Order doesn\'t matter. n!/(r!(n-r)!).' }
                 ]
             },
-            redox: {
-                center: { label: 'Electrochemistry', color: '#00d4ff' },
+            statistics: {
+                center: { label: 'Statistics', color: '#00d4ff' },
                 nodes: [
-                    { id: 'oxidation', label: 'Oxidation', color: '#ff006e', desc: 'Loss of electrons. Gain of oxygen. Increase in oxidation state.' },
-                    { id: 'reduction', label: 'Reduction', color: '#00ff88', desc: 'Gain of electrons. Loss of oxygen. Decrease in oxidation state.' },
-                    { id: 'oilrig', label: 'OIL RIG', color: '#ffbe0b', desc: 'Oxidation Is Loss, Reduction Is Gain (of electrons).' },
-                    { id: 'ox-states', label: 'Oxidation States', color: '#ffbe0b', desc: 'Rules: Elements=0, O=-2 (usually), H=+1 (usually), sum=charge.' },
-                    { id: 'agents', label: 'Redox Agents', color: '#8338ec', desc: 'Oxidising agent gets reduced. Reducing agent gets oxidised.' },
-                    { id: 'electrolysis', label: 'Electrolysis', color: '#8338ec', desc: 'Using electricity to drive non-spontaneous reactions.' },
-                    { id: 'anode', label: 'Anode (+)', color: '#8338ec', parent: 'electrolysis', desc: 'Oxidation occurs. Anions lose electrons.' },
-                    { id: 'cathode', label: 'Cathode (-)', color: '#8338ec', parent: 'electrolysis', desc: 'Reduction occurs. Cations gain electrons.' },
-                    { id: 'faraday', label: "Faraday's Laws", color: '#8338ec', parent: 'electrolysis', desc: 'Q = It. Mass ∝ charge passed. m = (Q×M)/(n×F).' },
-                    { id: 'cells', label: 'Electrochemical Cells', color: '#ff006e', desc: 'Convert chemical energy to electrical (galvanic) or vice versa.' },
-                    { id: 'galvanic', label: 'Galvanic Cells', color: '#ff006e', parent: 'cells', desc: 'Spontaneous redox produces electricity. Anode negative.' }
+                    { id: 'central', label: 'Central Tendency', color: '#ff006e', desc: 'Mean, median, mode - measures of center.' },
+                    { id: 'mean', label: 'Mean x̄ = Σx/n', color: '#ff006e', parent: 'central', desc: 'Average. Affected by outliers.' },
+                    { id: 'median', label: 'Median', color: '#ff006e', parent: 'central', desc: 'Middle value. Resistant to outliers.' },
+                    { id: 'spread', label: 'Spread', color: '#00ff88', desc: 'How data is distributed around center.' },
+                    { id: 'range', label: 'Range', color: '#00ff88', parent: 'spread', desc: 'Max - Min. Simple but crude.' },
+                    { id: 'std-dev', label: 'Standard Deviation', color: '#00ff88', parent: 'spread', desc: 'σ = √(Σ(x-x̄)²/n). Key measure of spread.' },
+                    { id: 'normal', label: 'Normal Distribution', color: '#ffbe0b', desc: 'Bell curve, symmetric about mean.' },
+                    { id: 'empirical', label: 'Empirical Rule', color: '#ffbe0b', parent: 'normal', desc: '68-95-99.7 rule for 1,2,3 standard deviations.' },
+                    { id: 'z-score', label: 'Z-Score', color: '#ffbe0b', parent: 'normal', desc: 'z = (x - μ)/σ. Standard units.' },
+                    { id: 'correlation', label: 'Correlation', color: '#8338ec', desc: 'Strength of linear relationship.' },
+                    { id: 'r-value', label: 'Correlation Coefficient', color: '#8338ec', parent: 'correlation', desc: 'r: -1 to +1. Closer to ±1 = stronger.' },
+                    { id: 'regression', label: 'Regression Line', color: '#8338ec', parent: 'correlation', desc: 'Line of best fit. y = a + bx.' }
                 ]
             },
-            rates: {
-                center: { label: 'Rates & Equilibrium', color: '#00d4ff' },
+            sequences: {
+                center: { label: 'Sequences & Series', color: '#00d4ff' },
                 nodes: [
-                    { id: 'rate', label: 'Rate of Reaction', color: '#ff006e', desc: 'Change in concentration per unit time. Rate = Δ[conc]/Δt.' },
-                    { id: 'factors', label: 'Factors Affecting Rate', color: '#00ff88', desc: 'Temperature, concentration, surface area, catalyst, pressure.' },
-                    { id: 'temp', label: 'Temperature ↑', color: '#00ff88', parent: 'factors', desc: 'More kinetic energy, more frequent/energetic collisions.' },
-                    { id: 'conc', label: 'Concentration ↑', color: '#00ff88', parent: 'factors', desc: 'More particles, more frequent collisions.' },
-                    { id: 'surface', label: 'Surface Area ↑', color: '#00ff88', parent: 'factors', desc: 'More exposed particles available for collision.' },
-                    { id: 'catalyst', label: 'Catalyst', color: '#00ff88', parent: 'factors', desc: 'Lowers activation energy, provides alternative pathway.' },
-                    { id: 'collision', label: 'Collision Theory', color: '#ffbe0b', desc: 'Particles must collide with correct orientation and E ≥ Eₐ.' },
-                    { id: 'activation', label: 'Activation Energy', color: '#ffbe0b', parent: 'collision', desc: 'Minimum energy required for reaction to occur.' },
-                    { id: 'equilibrium', label: 'Chemical Equilibrium', color: '#8338ec', desc: 'Dynamic: forward rate = reverse rate. No net change.' },
-                    { id: 'lechatelier', label: "Le Chatelier's", color: '#8338ec', parent: 'equilibrium', desc: 'System shifts to counteract any change imposed on it.' },
-                    { id: 'kc', label: 'Equilibrium Constant', color: '#8338ec', parent: 'equilibrium', desc: 'Kc = [products]ᵖ / [reactants]ʳ. Temperature dependent.' }
+                    { id: 'arithmetic', label: 'Arithmetic Sequence', color: '#ff006e', desc: 'Common difference d. Each term differs by d.' },
+                    { id: 'arith-term', label: 'Tₙ = a + (n-1)d', color: '#ff006e', parent: 'arithmetic', desc: 'nth term formula. a = first term.' },
+                    { id: 'arith-sum', label: 'Sₙ = n/2[2a + (n-1)d]', color: '#ff006e', parent: 'arithmetic', desc: 'Sum of n terms. Or Sₙ = n/2(a + l).' },
+                    { id: 'geometric', label: 'Geometric Sequence', color: '#00ff88', desc: 'Common ratio r. Each term multiplied by r.' },
+                    { id: 'geom-term', label: 'Tₙ = arⁿ⁻¹', color: '#00ff88', parent: 'geometric', desc: 'nth term formula.' },
+                    { id: 'geom-sum', label: 'Sₙ = a(1-rⁿ)/(1-r)', color: '#00ff88', parent: 'geometric', desc: 'Sum of n terms when r ≠ 1.' },
+                    { id: 'infinite', label: 'Infinite Series', color: '#ffbe0b', desc: 'Sum to infinity for geometric.' },
+                    { id: 'converge', label: 'Convergent |r| < 1', color: '#ffbe0b', parent: 'infinite', desc: 'Series converges if ratio between -1 and 1.' },
+                    { id: 'sum-inf', label: 'S∞ = a/(1-r)', color: '#ffbe0b', parent: 'infinite', desc: 'Sum to infinity formula.' },
+                    { id: 'applications', label: 'Applications', color: '#8338ec', desc: 'Growth, decay, financial maths.' },
+                    { id: 'compound', label: 'Compound Interest', color: '#8338ec', parent: 'applications', desc: 'A = P(1+r)ⁿ. Geometric sequence.' },
+                    { id: 'depreciation', label: 'Depreciation', color: '#8338ec', parent: 'applications', desc: 'A = P(1-r)ⁿ. Value decreases.' }
                 ]
             },
-            gases: {
-                center: { label: 'Gas Laws', color: '#00d4ff' },
+            complex: {
+                center: { label: 'Complex Numbers', color: '#00d4ff' },
                 nodes: [
-                    { id: 'ideal', label: 'Ideal Gas Equation', color: '#ff006e', desc: 'PV = nRT. R = 8.314 J/mol·K or 0.0821 L·atm/mol·K.' },
-                    { id: 'boyle', label: "Boyle's Law", color: '#00ff88', desc: 'P₁V₁ = P₂V₂ at constant T. P ∝ 1/V.' },
-                    { id: 'charles', label: "Charles's Law", color: '#00ff88', desc: 'V₁/T₁ = V₂/T₂ at constant P. V ∝ T (in Kelvin).' },
-                    { id: 'gaylussac', label: "Gay-Lussac's Law", color: '#00ff88', desc: 'P₁/T₁ = P₂/T₂ at constant V. P ∝ T.' },
-                    { id: 'avogadro', label: "Avogadro's Law", color: '#00ff88', desc: 'V ∝ n at constant T and P. Equal volumes = equal moles.' },
-                    { id: 'stp', label: 'STP Conditions', color: '#ffbe0b', desc: '0°C (273 K), 1 atm. Molar volume = 22.4 L/mol.' },
-                    { id: 'kinetic', label: 'Kinetic Theory', color: '#8338ec', desc: 'Assumptions about ideal gas behaviour.' },
-                    { id: 'random', label: 'Random Motion', color: '#8338ec', parent: 'kinetic', desc: 'Particles in constant random motion.' },
-                    { id: 'elastic', label: 'Elastic Collisions', color: '#8338ec', parent: 'kinetic', desc: 'No energy lost in collisions.' },
-                    { id: 'no-forces', label: 'No Intermolecular Forces', color: '#8338ec', parent: 'kinetic', desc: 'Particles don\'t attract or repel each other.' },
-                    { id: 'negligible', label: 'Negligible Volume', color: '#8338ec', parent: 'kinetic', desc: 'Particle volume << container volume.' }
-                ]
-            },
-            thermo: {
-                center: { label: 'Thermochemistry', color: '#00d4ff' },
-                nodes: [
-                    { id: 'enthalpy', label: 'Enthalpy (H)', color: '#ff006e', desc: 'Heat content at constant pressure. ΔH = H(products) - H(reactants).' },
-                    { id: 'exothermic', label: 'Exothermic ΔH < 0', color: '#ff006e', parent: 'enthalpy', desc: 'Heat released to surroundings. Products lower energy.' },
-                    { id: 'endothermic', label: 'Endothermic ΔH > 0', color: '#ff006e', parent: 'enthalpy', desc: 'Heat absorbed from surroundings. Products higher energy.' },
-                    { id: 'standard', label: 'Standard Conditions', color: '#00ff88', desc: '298 K (25°C), 1 atm, 1 M solutions. Symbol: °' },
-                    { id: 'formation', label: 'ΔHf° Formation', color: '#00ff88', parent: 'standard', desc: 'Enthalpy change forming 1 mole from elements.' },
-                    { id: 'combustion', label: 'ΔHc° Combustion', color: '#00ff88', parent: 'standard', desc: 'Complete burning of 1 mole in excess oxygen.' },
-                    { id: 'hess', label: "Hess's Law", color: '#ffbe0b', desc: 'Total ΔH is independent of route taken.' },
-                    { id: 'hess-calc', label: 'ΔH = ΣΔHf(prod) - ΣΔHf(react)', color: '#ffbe0b', parent: 'hess', desc: 'Calculate using formation enthalpies.' },
-                    { id: 'bonds', label: 'Bond Energies', color: '#8338ec', desc: 'Energy to break 1 mole of bonds in gaseous molecules.' },
-                    { id: 'bond-calc', label: 'ΔH = Σ(broken) - Σ(formed)', color: '#8338ec', parent: 'bonds', desc: 'Breaking = positive, forming = negative.' },
-                    { id: 'calorimetry', label: 'Calorimetry', color: '#8338ec', desc: 'q = mcΔT. Measure heat changes experimentally.' }
+                    { id: 'definition', label: 'Definition', color: '#ff006e', desc: 'z = a + bi where i = √(-1).' },
+                    { id: 'real', label: 'Real Part a', color: '#ff006e', parent: 'definition', desc: 'The non-imaginary component.' },
+                    { id: 'imag', label: 'Imaginary Part b', color: '#ff006e', parent: 'definition', desc: 'Coefficient of i.' },
+                    { id: 'operations', label: 'Operations', color: '#00ff88', desc: 'Add, subtract, multiply, divide.' },
+                    { id: 'conjugate', label: 'Conjugate z̄ = a - bi', color: '#00ff88', parent: 'operations', desc: 'Change sign of imaginary part.' },
+                    { id: 'zz-bar', label: 'z·z̄ = |z|²', color: '#00ff88', parent: 'operations', desc: 'Product with conjugate is real.' },
+                    { id: 'argand', label: 'Argand Diagram', color: '#ffbe0b', desc: 'Complex plane: x-axis real, y-axis imaginary.' },
+                    { id: 'modulus', label: 'Modulus |z|', color: '#ffbe0b', parent: 'argand', desc: '|z| = √(a² + b²). Distance from origin.' },
+                    { id: 'argument', label: 'Argument arg(z)', color: '#ffbe0b', parent: 'argand', desc: 'Angle from positive real axis.' },
+                    { id: 'polar', label: 'Polar Form', color: '#8338ec', desc: 'z = r(cos θ + i sin θ).' },
+                    { id: 'demoivre', label: 'De Moivre\'s Theorem', color: '#8338ec', parent: 'polar', desc: 'zⁿ = rⁿ(cos nθ + i sin nθ).' },
+                    { id: 'roots', label: 'Roots of Unity', color: '#8338ec', parent: 'polar', desc: 'n roots equally spaced on circle.' }
                 ]
             }
         };
 
         function initMindMaps() {
-            renderMindMap('atomic');
+            renderMindMap('algebra');
         }
 
         function renderMindMap(topicId) {
@@ -2042,7 +2097,7 @@
         let userProgress = {};
         
         function loadProgress() {
-            userProgress = JSON.parse(localStorage.getItem('chemProgress') || '{}');
+            userProgress = JSON.parse(localStorage.getItem('mathsProgress') || '{}');
             // Update topics array with saved progress
             topics.forEach(topic => {
                 if (userProgress[topic.id]) {
@@ -2056,7 +2111,7 @@
             if (!userProgress[topicId]) userProgress[topicId] = {};
             userProgress[topicId].progress = progressValue;
             userProgress[topicId].lastViewed = Date.now();
-            localStorage.setItem('chemProgress', JSON.stringify(userProgress));
+            localStorage.setItem('mathsProgress', JSON.stringify(userProgress));
             
             // Update topic in array
             const topic = topics.find(t => t.id === topicId);
@@ -2159,104 +2214,95 @@
 
         // ==================== DATA TABLES ====================
         const dataTables = {
-            electrochemical: {
-                title: 'Standard Electrode Potentials (E°)',
-                headers: ['Half-Reaction', 'E° (V)'],
+            trigValues: {
+                title: 'Trigonometric Values (Special Angles)',
+                headers: ['Angle', 'sin θ', 'cos θ', 'tan θ'],
                 data: [
-                    ['Li⁺ + e⁻ → Li', '-3.04'],
-                    ['K⁺ + e⁻ → K', '-2.93'],
-                    ['Ca²⁺ + 2e⁻ → Ca', '-2.87'],
-                    ['Na⁺ + e⁻ → Na', '-2.71'],
-                    ['Mg²⁺ + 2e⁻ → Mg', '-2.37'],
-                    ['Al³⁺ + 3e⁻ → Al', '-1.66'],
-                    ['Zn²⁺ + 2e⁻ → Zn', '-0.76'],
-                    ['Fe²⁺ + 2e⁻ → Fe', '-0.44'],
-                    ['Ni²⁺ + 2e⁻ → Ni', '-0.26'],
-                    ['Sn²⁺ + 2e⁻ → Sn', '-0.14'],
-                    ['Pb²⁺ + 2e⁻ → Pb', '-0.13'],
-                    ['2H⁺ + 2e⁻ → H₂', '0.00'],
-                    ['Cu²⁺ + 2e⁻ → Cu', '+0.34'],
-                    ['I₂ + 2e⁻ → 2I⁻', '+0.54'],
-                    ['Ag⁺ + e⁻ → Ag', '+0.80'],
-                    ['Br₂ + 2e⁻ → 2Br⁻', '+1.07'],
-                    ['Cl₂ + 2e⁻ → 2Cl⁻', '+1.36'],
-                    ['Au³⁺ + 3e⁻ → Au', '+1.50'],
-                    ['F₂ + 2e⁻ → 2F⁻', '+2.87']
+                    ['0°', '0', '1', '0'],
+                    ['30°', '½', '√3/2', '1/√3'],
+                    ['45°', '1/√2', '1/√2', '1'],
+                    ['60°', '√3/2', '½', '√3'],
+                    ['90°', '1', '0', 'undefined'],
+                    ['120°', '√3/2', '-½', '-√3'],
+                    ['135°', '1/√2', '-1/√2', '-1'],
+                    ['150°', '½', '-√3/2', '-1/√3'],
+                    ['180°', '0', '-1', '0'],
+                    ['270°', '-1', '0', 'undefined'],
+                    ['360°', '0', '1', '0']
                 ],
-                note: 'More positive E° = stronger oxidising agent. More negative E° = stronger reducing agent.'
+                note: 'Remember: SOHCAHTOA. sin θ = O/H, cos θ = A/H, tan θ = O/A. Use unit circle for all quadrants.'
             },
-            bondEnergies: {
-                title: 'Average Bond Energies',
-                headers: ['Bond', 'Energy (kJ/mol)', 'Bond', 'Energy (kJ/mol)'],
+            squares: {
+                title: 'Perfect Squares & Square Roots',
+                headers: ['n', 'n²', 'n', 'n²', '√n', 'Value'],
                 data: [
-                    ['H-H', '436', 'C-C', '347'],
-                    ['H-C', '413', 'C=C', '612'],
-                    ['H-N', '391', 'C≡C', '838'],
-                    ['H-O', '463', 'C-O', '358'],
-                    ['H-F', '568', 'C=O', '805'],
-                    ['H-Cl', '432', 'C-N', '286'],
-                    ['H-Br', '366', 'C≡N', '890'],
-                    ['H-I', '298', 'N-N', '158'],
-                    ['O-O', '146', 'N=N', '418'],
-                    ['O=O', '498', 'N≡N', '945'],
-                    ['Cl-Cl', '243', 'C-Cl', '346'],
-                    ['Br-Br', '193', 'C-Br', '290']
+                    ['1', '1', '11', '121', '√2', '1.414'],
+                    ['2', '4', '12', '144', '√3', '1.732'],
+                    ['3', '9', '13', '169', '√5', '2.236'],
+                    ['4', '16', '14', '196', '√6', '2.449'],
+                    ['5', '25', '15', '225', '√7', '2.646'],
+                    ['6', '36', '16', '256', '√8', '2.828'],
+                    ['7', '49', '17', '289', '√10', '3.162'],
+                    ['8', '64', '18', '324', '√11', '3.317'],
+                    ['9', '81', '19', '361', '√12', '3.464'],
+                    ['10', '100', '20', '400', '√13', '3.606']
                 ],
-                note: 'Bond breaking is endothermic (+). Bond forming is exothermic (-).'
+                note: 'Perfect squares are useful for simplifying surds. Remember: √(a×b) = √a × √b.'
             },
-            enthalpies: {
-                title: 'Standard Enthalpies of Formation (ΔHf°)',
-                headers: ['Compound', 'ΔHf° (kJ/mol)', 'Compound', 'ΔHf° (kJ/mol)'],
+            derivatives: {
+                title: 'Common Derivatives (Higher Level)',
+                headers: ['f(x)', "f'(x)", 'f(x)', "f'(x)"],
                 data: [
-                    ['H₂O(l)', '-286', 'CO₂(g)', '-394'],
-                    ['H₂O(g)', '-242', 'CO(g)', '-111'],
-                    ['HCl(g)', '-92', 'CH₄(g)', '-75'],
-                    ['HBr(g)', '-36', 'C₂H₆(g)', '-85'],
-                    ['NH₃(g)', '-46', 'C₂H₄(g)', '+52'],
-                    ['NO(g)', '+90', 'C₂H₂(g)', '+227'],
-                    ['NO₂(g)', '+34', 'CH₃OH(l)', '-239'],
-                    ['N₂O(g)', '+82', 'C₂H₅OH(l)', '-278'],
-                    ['SO₂(g)', '-297', 'C₆H₁₂O₆(s)', '-1271'],
-                    ['SO₃(g)', '-396', 'NaCl(s)', '-411']
+                    ['xⁿ', 'nxⁿ⁻¹', 'sin x', 'cos x'],
+                    ['eˣ', 'eˣ', 'cos x', '-sin x'],
+                    ['aˣ', 'aˣ ln a', 'tan x', 'sec² x'],
+                    ['ln x', '1/x', 'sec x', 'sec x tan x'],
+                    ['log_a x', '1/(x ln a)', 'csc x', '-csc x cot x'],
+                    ['√x', '1/(2√x)', 'cot x', '-csc² x'],
+                    ['1/x', '-1/x²', 'sin⁻¹ x', '1/√(1-x²)'],
+                    ['1/xⁿ', '-n/xⁿ⁺¹', 'cos⁻¹ x', '-1/√(1-x²)'],
+                    ['uv', "u'v + uv'", 'tan⁻¹ x', '1/(1+x²)'],
+                    ['u/v', "(u'v - uv')/v²", 'f(g(x))', "f'(g(x))·g'(x)"]
                 ],
-                note: 'Elements in standard states have ΔHf° = 0 by definition.'
+                note: 'Product rule: (uv)\' = u\'v + uv\'. Quotient rule: (u/v)\' = (u\'v - uv\')/v². Chain rule for composite functions.'
             },
-            constants: {
-                title: 'Important Constants & Values',
-                headers: ['Constant', 'Value'],
+            integrals: {
+                title: 'Common Integrals (Higher Level)',
+                headers: ['f(x)', '∫f(x)dx', 'f(x)', '∫f(x)dx'],
                 data: [
-                    ['Avogadro constant (Nₐ)', '6.022 × 10²³ mol⁻¹'],
-                    ['Gas constant (R)', '8.314 J mol⁻¹ K⁻¹'],
-                    ['Gas constant (R)', '0.0821 L atm mol⁻¹ K⁻¹'],
-                    ['Faraday constant (F)', '96,500 C mol⁻¹'],
-                    ['Molar volume at STP', '22.4 L mol⁻¹'],
-                    ['Standard pressure', '101.325 kPa (1 atm)'],
-                    ['Standard temperature', '273 K (0°C)'],
-                    ['Planck constant (h)', '6.626 × 10⁻³⁴ J s'],
-                    ['Speed of light (c)', '3.00 × 10⁸ m s⁻¹'],
-                    ['Specific heat of water', '4.18 J g⁻¹ °C⁻¹'],
-                    ['Density of water', '1.00 g cm⁻³'],
-                    ['Ionic product of water (Kw)', '1.0 × 10⁻¹⁴ mol² L⁻² at 25°C']
+                    ['xⁿ (n≠-1)', 'xⁿ⁺¹/(n+1) + C', 'sin x', '-cos x + C'],
+                    ['1/x', 'ln|x| + C', 'cos x', 'sin x + C'],
+                    ['eˣ', 'eˣ + C', 'sec² x', 'tan x + C'],
+                    ['aˣ', 'aˣ/ln a + C', 'csc² x', '-cot x + C'],
+                    ['1/(1+x²)', 'tan⁻¹ x + C', 'sec x tan x', 'sec x + C'],
+                    ['1/√(1-x²)', 'sin⁻¹ x + C', 'csc x cot x', '-csc x + C'],
+                    ['1/√(a²-x²)', 'sin⁻¹(x/a) + C', '1/(a²+x²)', '(1/a)tan⁻¹(x/a) + C']
                 ],
-                note: 'These values are commonly given on the exam data sheet.'
+                note: 'Remember +C for indefinite integrals. For definite integrals: ∫ₐᵇf(x)dx = F(b) - F(a).'
             },
-            indicators: {
-                title: 'Acid-Base Indicators',
-                headers: ['Indicator', 'pH Range', 'Acid Colour', 'Base Colour'],
+            logRules: {
+                title: 'Logarithm & Index Laws',
+                headers: ['Rule', 'Formula'],
                 data: [
-                    ['Methyl orange', '3.1 - 4.4', 'Red', 'Yellow'],
-                    ['Methyl red', '4.4 - 6.2', 'Red', 'Yellow'],
-                    ['Bromothymol blue', '6.0 - 7.6', 'Yellow', 'Blue'],
-                    ['Litmus', '5.0 - 8.0', 'Red', 'Blue'],
-                    ['Phenolphthalein', '8.2 - 10.0', 'Colourless', 'Pink'],
-                    ['Universal indicator', '1 - 14', 'Red/Orange', 'Blue/Purple']
+                    ['Product Rule (logs)', 'log(ab) = log a + log b'],
+                    ['Quotient Rule (logs)', 'log(a/b) = log a - log b'],
+                    ['Power Rule (logs)', 'log(aⁿ) = n log a'],
+                    ['Change of Base', 'logₐb = log b / log a'],
+                    ['Product Rule (indices)', 'aᵐ × aⁿ = aᵐ⁺ⁿ'],
+                    ['Quotient Rule (indices)', 'aᵐ ÷ aⁿ = aᵐ⁻ⁿ'],
+                    ['Power Rule (indices)', '(aᵐ)ⁿ = aᵐⁿ'],
+                    ['Zero Index', 'a⁰ = 1'],
+                    ['Negative Index', 'a⁻ⁿ = 1/aⁿ'],
+                    ['Fractional Index', 'a^(m/n) = ⁿ√(aᵐ)'],
+                    ['Special Values', 'logₐa = 1, logₐ1 = 0'],
+                    ['Natural Log', 'ln e = 1, ln 1 = 0']
                 ],
-                note: 'Use methyl orange for strong acid/weak base. Use phenolphthalein for weak acid/strong base.'
+                note: 'ln x means log base e (natural log). log x typically means log base 10 in Irish LC.'
             }
         };
 
         function initDataTables() {
-            renderDataTable('electrochemical');
+            renderDataTable('trigValues');
             document.querySelectorAll('[data-table]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('[data-table]').forEach(b => b.classList.remove('active'));
@@ -2286,52 +2332,54 @@
 
         // ==================== GLOSSARY ====================
         const glossaryTerms = [
-            { term: 'Atom', def: 'The smallest particle of an element that retains its chemical properties.', cat: 'atomic' },
-            { term: 'Atomic Number', def: 'The number of protons in the nucleus of an atom.', cat: 'atomic' },
-            { term: 'Mass Number', def: 'The total number of protons and neutrons in an atom.', cat: 'atomic' },
-            { term: 'Isotope', def: 'Atoms of the same element with different numbers of neutrons.', cat: 'atomic' },
-            { term: 'Ion', def: 'An atom or group of atoms with a net electric charge due to loss or gain of electrons.', cat: 'atomic' },
-            { term: 'Electron Configuration', def: 'The arrangement of electrons in an atom\'s orbitals.', cat: 'atomic' },
-            { term: 'Ground State', def: 'The lowest energy state of an atom where electrons occupy the lowest available energy levels.', cat: 'atomic' },
-            { term: 'Excited State', def: 'A state where an electron has absorbed energy and moved to a higher energy level.', cat: 'atomic' },
-            { term: 'Ionic Bond', def: 'A bond formed by the electrostatic attraction between oppositely charged ions.', cat: 'bonding' },
-            { term: 'Covalent Bond', def: 'A bond formed by the sharing of electron pairs between atoms.', cat: 'bonding' },
-            { term: 'Electronegativity', def: 'A measure of the ability of an atom to attract shared electrons in a covalent bond.', cat: 'bonding' },
-            { term: 'Polar Bond', def: 'A covalent bond where electrons are unequally shared due to different electronegativities.', cat: 'bonding' },
-            { term: 'Metallic Bond', def: 'Bonding in metals involving a lattice of positive ions surrounded by delocalised electrons.', cat: 'bonding' },
-            { term: 'Van der Waals Forces', def: 'Weak intermolecular forces caused by temporary dipoles.', cat: 'bonding' },
-            { term: 'Hydrogen Bond', def: 'A strong intermolecular force between H bonded to N, O, or F and a lone pair on another N, O, or F.', cat: 'bonding' },
-            { term: 'Alkane', def: 'A saturated hydrocarbon with only single C-C bonds. General formula: CₙH₂ₙ₊₂', cat: 'organic' },
-            { term: 'Alkene', def: 'An unsaturated hydrocarbon containing a C=C double bond. General formula: CₙH₂ₙ', cat: 'organic' },
-            { term: 'Functional Group', def: 'A group of atoms responsible for the characteristic reactions of a compound.', cat: 'organic' },
-            { term: 'Homologous Series', def: 'A family of compounds with the same functional group and general formula.', cat: 'organic' },
-            { term: 'Isomers', def: 'Compounds with the same molecular formula but different structural arrangements.', cat: 'organic' },
-            { term: 'Addition Reaction', def: 'A reaction where atoms are added across a multiple bond.', cat: 'organic' },
-            { term: 'Substitution Reaction', def: 'A reaction where one atom or group is replaced by another.', cat: 'organic' },
-            { term: 'Polymerisation', def: 'The process of joining many small monomer molecules to form a large polymer.', cat: 'organic' },
-            { term: 'Acid', def: 'A substance that donates protons (H⁺) or accepts electron pairs.', cat: 'acids' },
-            { term: 'Base', def: 'A substance that accepts protons (H⁺) or donates electron pairs.', cat: 'acids' },
-            { term: 'pH', def: 'A measure of hydrogen ion concentration: pH = -log₁₀[H⁺]', cat: 'acids' },
-            { term: 'Buffer Solution', def: 'A solution that resists changes in pH when small amounts of acid or base are added.', cat: 'acids' },
-            { term: 'Neutralisation', def: 'The reaction between an acid and a base to form salt and water.', cat: 'acids' },
-            { term: 'Titration', def: 'A technique to determine the concentration of a solution by reacting it with a solution of known concentration.', cat: 'acids' },
-            { term: 'Oxidation', def: 'Loss of electrons, gain of oxygen, or increase in oxidation state.', cat: 'redox' },
-            { term: 'Reduction', def: 'Gain of electrons, loss of oxygen, or decrease in oxidation state.', cat: 'redox' },
-            { term: 'Oxidising Agent', def: 'A substance that causes oxidation by accepting electrons (it gets reduced).', cat: 'redox' },
-            { term: 'Reducing Agent', def: 'A substance that causes reduction by donating electrons (it gets oxidised).', cat: 'redox' },
-            { term: 'Electrolysis', def: 'Using electrical energy to cause a non-spontaneous chemical reaction.', cat: 'redox' },
-            { term: 'Electrode', def: 'A conductor through which electricity enters or leaves an electrolyte.', cat: 'redox' },
-            { term: 'Anode', def: 'The electrode where oxidation occurs.', cat: 'redox' },
-            { term: 'Cathode', def: 'The electrode where reduction occurs.', cat: 'redox' },
-            { term: 'Mole', def: 'The amount of substance containing 6.022 × 10²³ particles.', cat: 'atomic' },
-            { term: 'Molar Mass', def: 'The mass of one mole of a substance, expressed in g/mol.', cat: 'atomic' },
-            { term: 'Enthalpy', def: 'The heat content of a system at constant pressure.', cat: 'redox' },
-            { term: 'Exothermic', def: 'A reaction that releases heat to the surroundings (ΔH < 0).', cat: 'redox' },
-            { term: 'Endothermic', def: 'A reaction that absorbs heat from the surroundings (ΔH > 0).', cat: 'redox' },
-            { term: 'Activation Energy', def: 'The minimum energy required for a reaction to occur.', cat: 'redox' },
-            { term: 'Catalyst', def: 'A substance that increases reaction rate without being consumed, by lowering activation energy.', cat: 'redox' },
-            { term: 'Equilibrium', def: 'A state where the rates of forward and reverse reactions are equal.', cat: 'redox' },
-            { term: 'Le Chatelier\'s Principle', def: 'When a system at equilibrium is disturbed, it shifts to counteract the change.', cat: 'redox' }
+            { term: 'Quadratic Equation', def: 'An equation of the form ax² + bx + c = 0, solved using the quadratic formula: x = (-b ± √(b²-4ac)) / 2a.', cat: 'algebra' },
+            { term: 'Discriminant', def: 'The expression b² - 4ac. If positive: 2 real roots, zero: 1 repeated root, negative: no real roots.', cat: 'algebra' },
+            { term: 'Polynomial', def: 'An expression consisting of variables and coefficients with non-negative integer exponents.', cat: 'algebra' },
+            { term: 'Factor Theorem', def: 'If f(a) = 0, then (x - a) is a factor of f(x). Used to find roots of polynomials.', cat: 'algebra' },
+            { term: 'Remainder Theorem', def: 'When f(x) is divided by (x - a), the remainder is f(a).', cat: 'algebra' },
+            { term: 'Simultaneous Equations', def: 'Two or more equations with the same unknowns, solved together by substitution or elimination.', cat: 'algebra' },
+            { term: 'Arithmetic Sequence', def: 'A sequence where each term differs from the previous by a constant (common difference d). Tₙ = a + (n-1)d.', cat: 'sequences' },
+            { term: 'Geometric Sequence', def: 'A sequence where each term is multiplied by a constant (common ratio r). Tₙ = arⁿ⁻¹.', cat: 'sequences' },
+            { term: 'Series', def: 'The sum of terms in a sequence. Arithmetic: Sₙ = n/2(2a + (n-1)d). Geometric: Sₙ = a(1-rⁿ)/(1-r).', cat: 'sequences' },
+            { term: 'Sum to Infinity', def: 'For geometric series with |r| < 1: S∞ = a/(1-r).', cat: 'sequences' },
+            { term: 'Derivative', def: 'The rate of change of a function. f\'(x) = lim(h→0) [f(x+h) - f(x)] / h.', cat: 'calculus' },
+            { term: 'Differentiation', def: 'The process of finding the derivative of a function. Power rule: d/dx(xⁿ) = nxⁿ⁻¹.', cat: 'calculus' },
+            { term: 'Integration', def: 'The reverse of differentiation. Finding the anti-derivative. ∫xⁿdx = xⁿ⁺¹/(n+1) + C.', cat: 'calculus' },
+            { term: 'Definite Integral', def: 'Integration between limits a and b: ∫ₐᵇf(x)dx = F(b) - F(a). Gives area under the curve.', cat: 'calculus' },
+            { term: 'Stationary Point', def: 'A point where f\'(x) = 0. Can be maximum, minimum, or point of inflection.', cat: 'calculus' },
+            { term: 'Second Derivative', def: 'f\'\'(x) determines nature of stationary points: f\'\'(x) > 0 is minimum, f\'\'(x) < 0 is maximum.', cat: 'calculus' },
+            { term: 'Sine Rule', def: 'For any triangle: a/sin A = b/sin B = c/sin C. Used when you have angle-side pairs.', cat: 'trigonometry' },
+            { term: 'Cosine Rule', def: 'a² = b² + c² - 2bc cos A. Used when you have SAS or SSS.', cat: 'trigonometry' },
+            { term: 'Radian', def: 'Unit of angle. 2π radians = 360°. 1 radian ≈ 57.3°. Arc length s = rθ.', cat: 'trigonometry' },
+            { term: 'Unit Circle', def: 'Circle with radius 1 centered at origin. cos θ is x-coordinate, sin θ is y-coordinate.', cat: 'trigonometry' },
+            { term: 'Trigonometric Identity', def: 'An equation true for all values. Key identity: sin²θ + cos²θ = 1.', cat: 'trigonometry' },
+            { term: 'Compound Angle', def: 'Formulas for sin(A±B), cos(A±B), tan(A±B). E.g., sin(A+B) = sinA cosB + cosA sinB.', cat: 'trigonometry' },
+            { term: 'Slope', def: 'Measure of steepness. m = (y₂-y₁)/(x₂-x₁) = rise/run. Equation: y - y₁ = m(x - x₁).', cat: 'geometry' },
+            { term: 'Perpendicular Lines', def: 'Lines at 90°. Their slopes multiply to -1: m₁ × m₂ = -1.', cat: 'geometry' },
+            { term: 'Parallel Lines', def: 'Lines with equal slopes: m₁ = m₂. They never intersect.', cat: 'geometry' },
+            { term: 'Distance Formula', def: 'd = √[(x₂-x₁)² + (y₂-y₁)²]. Finds distance between two points.', cat: 'geometry' },
+            { term: 'Midpoint', def: 'Point exactly between two points. M = ((x₁+x₂)/2, (y₁+y₂)/2).', cat: 'geometry' },
+            { term: 'Circle Equation', def: '(x-h)² + (y-k)² = r² where (h,k) is center and r is radius.', cat: 'geometry' },
+            { term: 'Probability', def: 'Measure of likelihood. P(A) = n(A)/n(S) where S is sample space.', cat: 'probability' },
+            { term: 'Independent Events', def: 'Events where P(A and B) = P(A) × P(B). Occurrence of one doesn\'t affect the other.', cat: 'probability' },
+            { term: 'Mutually Exclusive', def: 'Events that cannot occur together. P(A or B) = P(A) + P(B).', cat: 'probability' },
+            { term: 'Conditional Probability', def: 'P(A|B) = P(A and B)/P(B). Probability of A given B has occurred.', cat: 'probability' },
+            { term: 'Expected Value', def: 'E(X) = Σx·P(x). The average outcome over many trials.', cat: 'probability' },
+            { term: 'Combination', def: 'Selection where order doesn\'t matter. ⁿCᵣ = n!/(r!(n-r)!).', cat: 'probability' },
+            { term: 'Permutation', def: 'Arrangement where order matters. ⁿPᵣ = n!/(n-r)!.', cat: 'probability' },
+            { term: 'Mean', def: 'Average value. x̄ = Σx/n for raw data. For grouped data, use midpoints.', cat: 'statistics' },
+            { term: 'Standard Deviation', def: 'Measure of spread. σ = √(Σ(x-x̄)²/n). Shows how data clusters around mean.', cat: 'statistics' },
+            { term: 'Normal Distribution', def: 'Bell-shaped curve. 68% within 1σ, 95% within 2σ, 99.7% within 3σ of mean.', cat: 'statistics' },
+            { term: 'Correlation', def: 'Measure of linear relationship. r ranges from -1 (negative) to +1 (positive).', cat: 'statistics' },
+            { term: 'Complex Number', def: 'Number of form a + bi where i = √(-1). a is real part, b is imaginary part.', cat: 'complex' },
+            { term: 'Modulus', def: 'For z = a + bi, |z| = √(a² + b²). Distance from origin on Argand diagram.', cat: 'complex' },
+            { term: 'Conjugate', def: 'For z = a + bi, conjugate z̄ = a - bi. z × z̄ = |z|².', cat: 'complex' },
+            { term: 'Argand Diagram', def: 'Graph with real axis (horizontal) and imaginary axis (vertical) to plot complex numbers.', cat: 'complex' },
+            { term: 'De Moivre\'s Theorem', def: '(cos θ + i sin θ)ⁿ = cos(nθ) + i sin(nθ). Used for powers and roots.', cat: 'complex' },
+            { term: 'Vector', def: 'Quantity with magnitude and direction. Written as column vectors or i, j notation.', cat: 'vectors' },
+            { term: 'Dot Product', def: 'a·b = |a||b|cos θ = x₁x₂ + y₁y₂. Result is scalar. If a·b = 0, vectors are perpendicular.', cat: 'vectors' },
+            { term: 'Financial Maths', def: 'Includes compound interest A = P(1+r)ⁿ, depreciation, loan repayments, and present value.', cat: 'number' },
+            { term: 'Logarithm', def: 'If aˣ = b, then logₐb = x. log and ln are inverse functions of exponentials.', cat: 'algebra' }
         ].sort((a, b) => a.term.localeCompare(b.term));
 
         let currentGlossaryCategory = 'all';
